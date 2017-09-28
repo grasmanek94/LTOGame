@@ -166,6 +166,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+    <None Include="Assets\Editor\Simplygon Bumped Specular.shader" />
+    <None Include="Assets\Editor\Simplygon Specular.shader" />
+    <None Include="Assets\Editor\Simplygon Transparent Bumped Diffuse.shader" />
+    <None Include="Assets\Editor\Simplygon Transparent Bumped Specular Detail.shader" />
+    <None Include="Assets\Editor\Simplygon Transparent Bumped Specular.shader" />
+    <None Include="Assets\Editor\Simplygon Transparent Diffuse.shader" />
+    <None Include="Assets\Editor\Simplygon Transparent Specular.shader" />
+    <None Include="Assets\Editor\SimplygonReadMe.txt" />
     <None Include="Assets\ToUseAssets\Poly2Tri\AUTHORS.txt" />
     <None Include="Assets\ToUseAssets\Poly2Tri\LICENSE.txt" />
     <None Include="Assets\ToUseAssets\Standard Assets\Fonts\OpenSans\License!.txt" />
