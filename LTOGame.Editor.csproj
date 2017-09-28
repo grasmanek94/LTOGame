@@ -124,9 +124,6 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/2015/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="Simplygon">
-      <HintPath>Assets/Editor/Simplygon.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>G:/Development/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
     </Reference>
@@ -148,14 +145,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\Editor\Simplygon Bumped Specular.shader" />
-    <None Include="Assets\Editor\Simplygon Specular.shader" />
-    <None Include="Assets\Editor\Simplygon Transparent Bumped Diffuse.shader" />
-    <None Include="Assets\Editor\Simplygon Transparent Bumped Specular Detail.shader" />
-    <None Include="Assets\Editor\Simplygon Transparent Bumped Specular.shader" />
-    <None Include="Assets\Editor\Simplygon Transparent Diffuse.shader" />
-    <None Include="Assets\Editor\Simplygon Transparent Specular.shader" />
-    <None Include="Assets\Editor\SimplygonReadMe.txt" />
     <None Include="Assets\ToUseAssets\Poly2Tri\AUTHORS.txt" />
     <None Include="Assets\ToUseAssets\Poly2Tri\LICENSE.txt" />
     <None Include="Assets\ToUseAssets\Standard Assets\Fonts\OpenSans\License!.txt" />
