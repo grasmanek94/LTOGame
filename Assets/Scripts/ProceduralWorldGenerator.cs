@@ -53,6 +53,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         active[which].Add(game_object);
 
         game_object.SetActive(true);
+        ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
+        game_object_offsets.ResetTaken();
 
         return game_object;
     }
@@ -105,8 +107,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         to_offsets.taken[0] = from;
         from_offsets.taken[taken_idx] = to;
 
-        to.transform.position = from.transform.position + from_offsets.position_offsets[taken_idx] + to_offsets.position_offsets[0];
-        to.transform.eulerAngles = from.transform.eulerAngles + from_offsets.rotation_offsets[taken_idx] + to_offsets.rotation_offsets[0];
+        to.transform.position = from.transform.position + from_offsets.position_offsets[taken_idx] - to_offsets.position_offsets[0];
+        to.transform.eulerAngles = from.transform.eulerAngles + from_offsets.rotation_offsets[taken_idx] - to_offsets.rotation_offsets[0];
 
         return true;
     }
@@ -140,12 +142,14 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         ConnectFromFirstAvailable(start, next);
 
         start = next;
+        next = Activate(PrefabProperties.Prefab.RoadCrossC);
+        ConnectFromFirstAvailable(start, next);
+
+        /*start = next;
         next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
         ConnectFromFirstAvailable(start, next);
 
-        start = next;
-        next = Activate(PrefabProperties.Prefab.RoadCrossC);
-        ConnectFromFirstAvailable(start, next);
+*/
     }
 
     // Update is called once per frame
