@@ -114,7 +114,9 @@ MonoBehaviour:
   rotation_offsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  taken: 0000
+  taken:
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &114950748507476228
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -126,4 +128,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a6564408ff7d4341befe80ff9f722a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: 6
+  prefab: 8

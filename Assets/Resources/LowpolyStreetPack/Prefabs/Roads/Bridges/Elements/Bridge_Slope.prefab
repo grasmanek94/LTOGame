@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
   - component: {fileID: 6400000}
-  - component: {fileID: 114258095858685588}
-  - component: {fileID: 114752245401956420}
+  - component: {fileID: 114514973678742688}
+  - component: {fileID: 114982936991565106}
   m_Layer: 0
-  m_Name: Road_Streight
+  m_Name: Bridge_Slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
-  m_Mesh: {fileID: 4300022, guid: bca5c93adbc71744ca9ea932c796e900, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 743b5a36add64654a83f60be2beee9f1, type: 3}
 --- !u!64 &6400000
 MeshCollider:
   m_ObjectHideFlags: 1
@@ -85,7 +85,7 @@ MeshCollider:
   m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300022, guid: bca5c93adbc71744ca9ea932c796e900, type: 3}
+  m_Mesh: {fileID: 4300002, guid: 743b5a36add64654a83f60be2beee9f1, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -97,7 +97,19 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
---- !u!114 &114258095858685588
+--- !u!114 &114514973678742688
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a6564408ff7d4341befe80ff9f722a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: 3
+--- !u!114 &114982936991565106
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -109,23 +121,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position_offsets:
-  - {x: 0, y: 0, z: -15}
-  - {x: 0, y: 0, z: 15}
+  - {x: 0, y: -10.145, z: -29.54}
+  - {x: 0, y: 0, z: 29.54}
   rotation_offsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   taken:
   - {fileID: 0}
   - {fileID: 0}
---- !u!114 &114752245401956420
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a6564408ff7d4341befe80ff9f722a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: 11

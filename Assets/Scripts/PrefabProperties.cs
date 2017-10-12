@@ -6,17 +6,18 @@ public class PrefabProperties : MonoBehaviour {
 
     public enum Prefab
     {
-        Bridge_Damage,
-        Bridge_Simple_Straight,
-        BridgeSlope_Simple,
-        Road_BusStop,
-        Road_Cross_A_A,
-        Road_Cross_A_B,
-        Road_Crosswalk,
-        Road_End_A,
-        Road_End_B,
-        Road_Intersection_A,
-        Road_Streight
+        BridgeDamage,
+        BridgeStraight,
+        BridgeSlopeUp,
+        BridgeSlopeDown,
+        RoadBusStop,
+        RoadCrossA,
+        RoadCrossB,
+        RoadCrossC,
+        RoadCrosswalk,
+        RoadEndA,
+        RoadEndB,
+        RoadStraight
     }
 
     public Prefab prefab;
