@@ -114,6 +114,7 @@ MonoBehaviour:
   rotation_offsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
+  taken: 0000
 --- !u!114 &114950748507476228
 MonoBehaviour:
   m_ObjectHideFlags: 1

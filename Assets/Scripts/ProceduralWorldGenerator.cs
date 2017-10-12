@@ -18,8 +18,10 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         {
             return;
         }
+
         GameObject original = (GameObject)Resources.Load(resource);
         PrefabProperties.Prefab which = original.GetComponent<PrefabProperties>().prefab;
+
         if (!instances.ContainsKey(which))
         {
             instances.Add(which, new List<GameObject>());
@@ -32,10 +34,13 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         original.SetActive(false);
         instances[which].Add(original);
         inactive[which].Add(original);
+
         while (count --> 0)
         {
             GameObject game_object = Instantiate(original);
+
             game_object.SetActive(false);
+
             instances[which].Add(game_object);
             inactive[which].Add(game_object);
         }

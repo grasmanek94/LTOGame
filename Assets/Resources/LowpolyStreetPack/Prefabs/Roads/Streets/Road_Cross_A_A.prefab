@@ -112,12 +112,13 @@ MonoBehaviour:
   - {x: 0, y: 0, z: -15}
   - {x: 0, y: 0, z: 15}
   - {x: -15, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 15, y: 0, z: 0}
   rotation_offsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: -90, z: 0}
+  - {x: 0, y: 90, z: 0}
+  taken: 00000000
 --- !u!114 &114422152999883966
 MonoBehaviour:
   m_ObjectHideFlags: 1

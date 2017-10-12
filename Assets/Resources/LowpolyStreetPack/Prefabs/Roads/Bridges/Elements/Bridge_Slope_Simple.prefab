@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2300000}
   - component: {fileID: 6400000}
   - component: {fileID: 114514973678742688}
+  - component: {fileID: 114982936991565106}
   m_Layer: 0
   m_Name: Bridge_Slope_Simple
   m_TagString: Untagged
@@ -108,3 +109,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: 2
+--- !u!114 &114982936991565106
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e41aaad75abeea49b114a26b031ea6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position_offsets:
+  - {x: 0, y: -10.145, z: -29.54}
+  - {x: 0, y: 0, z: 29.54}
+  rotation_offsets:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  taken: 0000

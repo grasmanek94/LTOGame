@@ -116,6 +116,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
+  taken: 000000
 --- !u!114 &114703459905691002
 MonoBehaviour:
   m_ObjectHideFlags: 1
