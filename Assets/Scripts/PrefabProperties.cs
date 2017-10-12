@@ -13,11 +13,12 @@ public class PrefabProperties : MonoBehaviour {
         RoadBusStop,
         RoadCrossA,
         RoadCrossB,
-        RoadCrossC,
+        RoadCrossRight,
         RoadCrosswalk,
         RoadEndA,
         RoadEndB,
-        RoadStraight
+        RoadStraight,
+        RoadCrossLeft
     }
 
     public Prefab prefab;

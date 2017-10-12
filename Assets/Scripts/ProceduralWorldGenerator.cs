@@ -120,18 +120,19 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
 
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected", 10);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 10);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 10);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 10);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected", 10);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_A_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_B_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 10);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected", 1);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected", 1);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 10);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 5);
 
         creation_tick = 0;
 
@@ -142,7 +143,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         ConnectFromFirstAvailable(start, next);
 
         start = next;
-        next = Activate(PrefabProperties.Prefab.RoadCrossC);
+        next = Activate(PrefabProperties.Prefab.RoadCrossRight);
         ConnectFromFirstAvailable(start, next);
 
         start = next;
@@ -150,7 +151,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         ConnectFromFirstAvailable(start, next);
 
         start = next;
-        next = Activate(PrefabProperties.Prefab.RoadCrossC);
+        next = Activate(PrefabProperties.Prefab.RoadCrossLeft);
         ConnectFromFirstAvailable(start, next);
 
         start = next;

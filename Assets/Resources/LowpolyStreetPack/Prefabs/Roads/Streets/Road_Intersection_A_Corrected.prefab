@@ -146,7 +146,7 @@ MonoBehaviour:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 90, z: 0}
   taken:
-  - {fileID: 1847262508706066, guid: bcc87575db8591f4f8ec40d49d9e23d4, type: 2}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!114 &114559922241830768
