@@ -123,7 +123,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
 
-        InstantiatePrefabs("LowpolyStreetPack /Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected", 10);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected", 10);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 10);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 10);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 10);
