@@ -145,11 +145,22 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         next = Activate(PrefabProperties.Prefab.RoadCrossC);
         ConnectFromFirstAvailable(start, next);
 
-        /*start = next;
+        start = next;
         next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
         ConnectFromFirstAvailable(start, next);
 
-*/
+        start = next;
+        next = Activate(PrefabProperties.Prefab.RoadCrossC);
+        ConnectFromFirstAvailable(start, next);
+
+        start = next;
+        next = Activate(PrefabProperties.Prefab.BridgeSlopeDown);
+        ConnectFromFirstAvailable(start, next);
+
+        start = next;
+        next = Activate(PrefabProperties.Prefab.RoadStraight);
+        ConnectFromFirstAvailable(start, next);
+
     }
 
     // Update is called once per frame
