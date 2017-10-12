@@ -11,6 +11,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> active;
 
     private int creation_tick;
+    private System.Random random;
 
     void InstantiatePrefabs(string resource, int count)
     {
@@ -116,6 +117,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
+        random = new System.Random(1337);
+        
         instances = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();

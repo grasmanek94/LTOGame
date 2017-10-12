@@ -100,6 +100,7 @@
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PrefabProperties.cs" />
     <Compile Include="Assets\Scripts\ProceduralWorldGenerator.cs" />
+    <Compile Include="Assets\Scripts\RandomStateExtension.cs" />
     <Compile Include="Assets\ToUseAssets\Bend.cs" />
     <Compile Include="Assets\ToUseAssets\PlaneGenerator.cs" />
     <Compile Include="Assets\ToUseAssets\PlayerFollower.cs" />
