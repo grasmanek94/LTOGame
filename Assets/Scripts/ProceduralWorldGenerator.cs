@@ -87,7 +87,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         {
             if(!from_offsets.taken[i])
             {
-                taken_idx = 0;
+                taken_idx = i;
                 break;
             }
         }
