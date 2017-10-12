@@ -29,12 +29,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
             active.Add(which, new List<GameObject>());
         }
 
-        --count;
-        
-        original.SetActive(false);
-        instances[which].Add(original);
-        inactive[which].Add(original);
-
         while (count --> 0)
         {
             GameObject game_object = Instantiate(original);
@@ -86,16 +80,17 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     {
         ConnectionOffsets from_offsets = from.GetComponent<ConnectionOffsets>();
 
-        int i = 0;
-        for (; i < from_offsets.taken.Length; ++i)
+        int taken_idx = 0;
+        for (int i = 0; i < from_offsets.taken.Length; ++i)
         {
             if(!from_offsets.taken[i])
             {
+                taken_idx = 0;
                 break;
             }
         }
 
-        if (from_offsets.taken[i])
+        if (from_offsets.taken[taken_idx])
         {
             return false;
         }
@@ -108,10 +103,10 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
 
         to_offsets.taken[0] = from;
-        from_offsets.taken[i] = to;
+        from_offsets.taken[taken_idx] = to;
 
-        to.transform.position = from.transform.position + from_offsets.position_offsets[i] + to_offsets.position_offsets[0];
-        to.transform.eulerAngles = from.transform.eulerAngles + from_offsets.rotation_offsets[i] + to_offsets.rotation_offsets[0];
+        to.transform.position = from.transform.position + from_offsets.position_offsets[taken_idx] + to_offsets.position_offsets[0];
+        to.transform.eulerAngles = from.transform.eulerAngles + from_offsets.rotation_offsets[taken_idx] + to_offsets.rotation_offsets[0];
 
         return true;
     }
