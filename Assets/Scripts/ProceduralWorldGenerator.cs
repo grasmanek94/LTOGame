@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ProceduralWorldGenerator : MonoBehaviour {
     
-    public GameObject follow;
+    public GameObject follow_player;
+
+    private PlayerController follow_player_controller;
 
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> instances;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> inactive;
@@ -77,6 +79,71 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         game_object_offsets.ResetTaken();
 
         return true;
+    }
+
+    void DeactivateChainBackwards(GameObject from_exclusive)
+    {
+        if(from_exclusive == null)
+        {
+            return;
+        }
+
+        ConnectionOffsets game_object_offsets = from_exclusive.GetComponent<ConnectionOffsets>();
+        if(game_object_offsets != null && game_object_offsets.taken.Length < 2)
+        {
+            return;
+        }
+
+        GameObject from_inclusive = game_object_offsets.taken[0];
+
+        Dictionary<int, List<GameObject>> to_deactivate = new Dictionary<int, List<GameObject>>();
+
+        int i = 0;
+        to_deactivate.Add(i, new List<GameObject>());
+
+        to_deactivate[i].Add(from_inclusive);
+
+        int j = i++;
+        to_deactivate.Add(i, new List<GameObject>());
+
+
+        game_object_offsets = to_deactivate[j][0].GetComponent<ConnectionOffsets>();
+
+        for (int m = 0; m < game_object_offsets.taken.Length; ++m)
+        {
+            if (game_object_offsets.taken[m] != null && m != 1) // 1 = forward
+            {
+                to_deactivate[i].Add(game_object_offsets.taken[m]);
+            }
+        }
+
+        Deactivate(to_deactivate[j][0]);
+
+        while (true)
+        {
+            j = i++;
+            to_deactivate.Add(i, new List<GameObject>());
+
+            int len = to_deactivate[j].Count;
+            if(len == 0)
+            {
+                break;
+            }
+
+            for (int k = 0; k < len; ++k)
+            {                
+                game_object_offsets = to_deactivate[j][k].GetComponent<ConnectionOffsets>();
+                
+                for (int m = 0; m < game_object_offsets.taken.Length; ++m)
+                {
+                    if (game_object_offsets.taken[m] != null)
+                    {
+                        to_deactivate[i].Add(game_object_offsets.taken[m]);
+                    }
+                }
+                Deactivate(to_deactivate[j][k]);
+            }
+        }
     }
 
     bool ConnectFromFirstAvailable(GameObject from, GameObject to)
@@ -165,11 +232,12 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         next = Activate(PrefabProperties.Prefab.RoadStraight);
         ConnectFromFirstAvailable(start, next);
 
+        follow_player_controller = follow_player.GetComponent<PlayerController>();
     }
 
     // Update is called once per frame
     void Update ()
     {
-
+        DeactivateChainBackwards(follow_player_controller.below);
 	}
 }

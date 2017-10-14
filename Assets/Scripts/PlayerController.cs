@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rigidbody;
     private float last_good_known_x = 0.0f;
 
+    public GameObject below;
     private float lockY = 0.0f;
     private bool rotating = false;
 
@@ -35,6 +36,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
+        below = null;
     }
 
     void Update()
@@ -109,6 +111,7 @@ public class PlayerController : MonoBehaviour
             float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
             Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
+            below = hit.collider.gameObject;
         }
         else
         {
