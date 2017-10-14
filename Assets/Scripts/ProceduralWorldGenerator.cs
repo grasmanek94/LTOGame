@@ -7,6 +7,9 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     
     public GameObject follow_player;
 
+    public int low_chance_piece;
+    public int low_chance_piece_randomness;
+
     private PlayerController follow_player_controller;
 
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> instances;
@@ -15,7 +18,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
     private int creation_tick;
     private System.Random random;
-    private List<PrefabProperties.Prefab> random_pieces;
+    private List<PrefabProperties.Prefab> random_pieces_normal_chance;
+    private List<PrefabProperties.Prefab> random_pieces_low_chance;
 
     void InstantiatePrefabs(string resource, int count)
     {
@@ -151,6 +155,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
     void GenerateForward(GameObject from, int max_nesting_level)
     {
+        ++creation_tick;
         GenerateForward(from, 0, max_nesting_level);
     }
 
@@ -173,7 +178,16 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         {
             if(game_object_offsets.taken[i] == null)
             {
-                PrefabProperties.Prefab piece = random_pieces[random.Next() % random_pieces.Count];
+                PrefabProperties.Prefab piece;
+                if (creation_tick % (low_chance_piece + (random.Next() % low_chance_piece_randomness)) == 0)
+                {
+                    creation_tick = 1;
+                    piece = random_pieces_low_chance[random.Next() % random_pieces_low_chance.Count];
+                }
+                else
+                {
+                    piece = random_pieces_normal_chance[random.Next() % random_pieces_normal_chance.Count];
+                }
                 ConnectFromFirstAvailable(from, Activate(piece));
             }
 
@@ -182,27 +196,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                 GenerateForward(game_object_offsets.taken[i], nesting_level + 1, max_nesting_level);
             }
         }
-    }
-
-    private Vector2 RotatePointAroundPoint(float center_x, float center_y, float point_x, float point_y, float angle)
-    {
-        return RotatePointAroundPoint(new Vector2(center_x, center_y), new Vector2(point_x, point_y), angle);
-    }
-
-    private Vector2 RotatePointAroundPoint(Vector2 center, Vector2 point, float angle)
-    {
-        float x1 = point.x - center.x;
-        float y1 = point.y - center.y;
-
-        angle *= Mathf.Deg2Rad;
-
-        float x2 = x1 * Mathf.Cos(angle) - y1 * Mathf.Sin(angle);
-        float y2 = x1 * Mathf.Sin(angle) + y1 * Mathf.Cos(angle);
-
-        point.x = x2 + center.x;
-        point.y = y2 + center.y;
-
-        return point;
     }
 
     private Vector2 RotatePointAroundPoint(float point_x, float point_y, float angle)
@@ -285,29 +278,11 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         to_position_offsets.x = correction.x;
         to_position_offsets.y = correction.y;
 
-        // correct angles
-
-        correction = RotatePointAroundPoint(from.transform.eulerAngles.z, from.transform.eulerAngles.y, to_rotation_offsets.x);
-        to_rotation_offsets.z = correction.x;
-        to_rotation_offsets.y = correction.y;
-
-        correction = RotatePointAroundPoint(from.transform.eulerAngles.z, from.transform.eulerAngles.x, to_rotation_offsets.y);
-        to_rotation_offsets.z = correction.x;
-        to_rotation_offsets.x = correction.y;
-
-        correction = RotatePointAroundPoint(from.transform.eulerAngles.x, from.transform.eulerAngles.y, to_rotation_offsets.z);
-        to_rotation_offsets.x = correction.x;
-        to_rotation_offsets.y = correction.y;
-
-        // apply transforms
-        Vector3 total_relative_pos = from_position_offsets - to_position_offsets;
-        Vector3 total_relative_rot = from.transform.eulerAngles; // + from_rotation_offsets - to_rotation_offsets;
-
-        to.transform.rotation = Quaternion.Euler(to_rotation_offsets);
-        to.transform.Rotate(Vector3.right, from_rotation_offsets.z);
-        to.transform.Rotate(Vector3.up, from_rotation_offsets.y);
-        to.transform.Rotate(Vector3.forward, from_rotation_offsets.x);
-        to.transform.position = from.transform.TransformPoint(total_relative_pos); 
+        // apply transforms (and correct rotation)
+        to.transform.rotation = Quaternion.Euler(from.transform.eulerAngles);
+        to.transform.Rotate(from_rotation_offsets, Space.Self);
+        to.transform.Rotate(to_rotation_offsets, Space.Self);
+        to.transform.position = from.transform.TransformPoint(from_position_offsets - to_position_offsets); 
 
         return true;
     }
@@ -316,7 +291,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     void Start ()
     {
         random = new System.Random(1337);
-        random_pieces = new List<PrefabProperties.Prefab>();
+        random_pieces_normal_chance = new List<PrefabProperties.Prefab>();
+        random_pieces_low_chance = new List<PrefabProperties.Prefab>();
 
         instances = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
@@ -336,28 +312,29 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 5);
 
-        random_pieces.Add(PrefabProperties.Prefab.BridgeDamage);
-        random_pieces.Add(PrefabProperties.Prefab.BridgeStraight);
-        random_pieces.Add(PrefabProperties.Prefab.BridgeSlopeUp);
-        random_pieces.Add(PrefabProperties.Prefab.BridgeSlopeDown);
-        random_pieces.Add(PrefabProperties.Prefab.RoadBusStop);
-        random_pieces.Add(PrefabProperties.Prefab.RoadCrossA);
-        random_pieces.Add(PrefabProperties.Prefab.RoadCrossB);
-        random_pieces.Add(PrefabProperties.Prefab.RoadCrossRight);
-        random_pieces.Add(PrefabProperties.Prefab.RoadCrosswalk);
-        random_pieces.Add(PrefabProperties.Prefab.RoadStraight);
-        random_pieces.Add(PrefabProperties.Prefab.RoadCrossLeft);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeDamage);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeStraight);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeSlopeUp);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeSlopeDown);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadBusStop);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadCrosswalk);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadStraight);
+
+        random_pieces_low_chance.Add(PrefabProperties.Prefab.RoadCrossA);
+        random_pieces_low_chance.Add(PrefabProperties.Prefab.RoadCrossB);
+        random_pieces_low_chance.Add(PrefabProperties.Prefab.RoadCrossRight);
+        random_pieces_low_chance.Add(PrefabProperties.Prefab.RoadCrossLeft);
 
         creation_tick = 0;
 
         GameObject start = Activate(PrefabProperties.Prefab.RoadEndA);
         start.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-        start.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 15.0f);
+        start.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         GameObject next = Activate(PrefabProperties.Prefab.RoadStraight);
         ConnectFromFirstAvailable(start, next);
 
-        start = next;
+        /*start = next;
         next = Activate(PrefabProperties.Prefab.RoadCrossRight);
         ConnectFromFirstAvailable(start, next);
 
@@ -366,7 +343,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         ConnectFromFirstAvailable(start, next);
 
         next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
-        ConnectFromFirstAvailable(start, next);
+        ConnectFromFirstAvailable(start, next);*/
 
         follow_player_controller = follow_player.GetComponent<PlayerController>();
     }
@@ -376,6 +353,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     void Update ()
     {
         DeactivateChainBackwards(follow_player_controller.below);
-        //GenerateForward(follow_player_controller.below, 4);
+        GenerateForward(follow_player_controller.below, 2);
     }
 }
