@@ -113,14 +113,14 @@ public class PlayerController : MonoBehaviour
         if (Physics.Raycast(ray, out hit, hoverHeight))
         {
             float delta = hoverHeight - hit.distance;
-            float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
+            float proportionalHeight = Mathf.Pow(hoverHeight - hit.distance, 3.0f) / hoverHeight;
             Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
             below = hit.collider.gameObject.transform.parent.gameObject;
         }
         else if(rigidbody.velocity.magnitude < 0.001)
         {
-            Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce / 10.0f;
+            Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
 

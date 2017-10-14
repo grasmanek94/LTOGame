@@ -183,6 +183,43 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
     }
 
+    private Vector2 RotatePointAroundPoint(float center_x, float center_y, float point_x, float point_y, float angle)
+    {
+        return RotatePointAroundPoint(new Vector2(center_x, center_y), new Vector2(point_x, point_y), angle);
+    }
+
+    private Vector2 RotatePointAroundPoint(Vector2 center, Vector2 point, float angle)
+    {
+        float x1 = point.x - center.x;
+        float y1 = point.y - center.y;
+
+        angle *= Mathf.Deg2Rad;
+
+        float x2 = x1 * Mathf.Cos(angle) - y1 * Mathf.Sin(angle);
+        float y2 = x1 * Mathf.Sin(angle) + y1 * Mathf.Cos(angle);
+
+        point.x = x2 + center.x;
+        point.y = y2 + center.y;
+
+        return point;
+    }
+
+    private Vector2 RotatePointAroundPoint(Vector2 point, float angle)
+    {
+        float x1 = point.x;
+        float y1 = point.y;
+
+        angle *= Mathf.Deg2Rad;
+
+        float x2 = x1 * Mathf.Cos(angle) - y1 * Mathf.Sin(angle);
+        float y2 = x1 * Mathf.Sin(angle) + y1 * Mathf.Cos(angle);
+
+        point.x = x2;
+        point.y = y2;
+
+        return point;
+    }
+
     bool ConnectFromFirstAvailable(GameObject from, GameObject to, int first_available = 0)
     {
         if(from == null || to == null)
@@ -222,14 +259,17 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         to_offsets.taken[0] = from;
         from_offsets.taken[taken_idx] = to;
 
-        Vector3 total_relative_pos = from_offsets.position_offsets[taken_idx] - to_offsets.position_offsets[0];
-        Vector3 total_relative_rot = from_offsets.rotation_offsets[taken_idx] - to_offsets.rotation_offsets[0];
+        Vector2 correction = RotatePointAroundPoint(new Vector2(to_offsets.position_offsets[0].x, to_offsets.position_offsets[0].z), from_offsets.rotation_offsets[taken_idx].y);
+        to_offsets.position_offsets[0].x = correction.x;
+        to_offsets.position_offsets[0].x = correction.x;
+
+        Vector3 total_relative_pos = from_offsets.position_offsets[taken_idx] - ;
+        Vector3 total_relative_rot = to.transform.eulerAngles + from_offsets.rotation_offsets[taken_idx] - to_offsets.rotation_offsets[0];
+
 
         to.transform.position = from.transform.position + total_relative_pos;
-        to.transform.eulerAngles = from.transform.eulerAngles + total_relative_rot;
+        to.transform.eulerAngles = total_relative_rot;
 
-        /*to.transform.Translate(total_relative_pos, from.transform);*/
-        
         return true;
     }
 
