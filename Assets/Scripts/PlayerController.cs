@@ -111,7 +111,7 @@ public class PlayerController : MonoBehaviour
             float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
             Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
-            below = hit.collider.gameObject;
+            below = hit.collider.gameObject.transform.parent.gameObject;
         }
         else
         {

@@ -279,7 +279,7 @@ Prefab:
     - target: {fileID: 54608740076105958, guid: 38ad326876cd18147ba895d4a3cbccd1,
         type: 2}
       propertyPath: m_Drag
-      value: 0.11
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 114449195400942072, guid: 38ad326876cd18147ba895d4a3cbccd1,
         type: 2}
@@ -299,7 +299,7 @@ Prefab:
     - target: {fileID: 54608740076105958, guid: 38ad326876cd18147ba895d4a3cbccd1,
         type: 2}
       propertyPath: m_AngularDrag
-      value: 0.22
+      value: 0.85
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 38ad326876cd18147ba895d4a3cbccd1, type: 2}
@@ -344,7 +344,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e30b8e629655c7478ee464a2001ac4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  follow: {fileID: 1976853422}
+  follow_player: {fileID: 1976853422}
 --- !u!1 &1972367755
 GameObject:
   m_ObjectHideFlags: 0

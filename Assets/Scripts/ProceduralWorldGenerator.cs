@@ -89,7 +89,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
 
         ConnectionOffsets game_object_offsets = from_exclusive.GetComponent<ConnectionOffsets>();
-        if(game_object_offsets != null && game_object_offsets.taken.Length < 2)
+        if(game_object_offsets == null || game_object_offsets.taken.Length < 2)
         {
             return;
         }
@@ -111,7 +111,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         for (int m = 0; m < game_object_offsets.taken.Length; ++m)
         {
-            if (game_object_offsets.taken[m] != null && m != 1) // 1 = forward
+            if (game_object_offsets.taken[m] != null && game_object_offsets.taken[m] != from_exclusive)
             {
                 to_deactivate[i].Add(game_object_offsets.taken[m]);
             }
