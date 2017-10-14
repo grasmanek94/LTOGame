@@ -59,6 +59,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         game_object.SetActive(true);
         ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
+        game_object.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
         game_object_offsets.ResetTaken();
 
         return game_object;
@@ -286,12 +287,27 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         // correct angles
 
+        correction = RotatePointAroundPoint(from.transform.eulerAngles.z, from.transform.eulerAngles.y, to_rotation_offsets.x);
+        to_rotation_offsets.z = correction.x;
+        to_rotation_offsets.y = correction.y;
+
+        correction = RotatePointAroundPoint(from.transform.eulerAngles.z, from.transform.eulerAngles.x, to_rotation_offsets.y);
+        to_rotation_offsets.z = correction.x;
+        to_rotation_offsets.x = correction.y;
+
+        correction = RotatePointAroundPoint(from.transform.eulerAngles.x, from.transform.eulerAngles.y, to_rotation_offsets.z);
+        to_rotation_offsets.x = correction.x;
+        to_rotation_offsets.y = correction.y;
+
         // apply transforms
         Vector3 total_relative_pos = from_position_offsets - to_position_offsets;
-        Vector3 total_relative_rot = from.transform.eulerAngles + from_rotation_offsets - to_rotation_offsets;
+        Vector3 total_relative_rot = from.transform.eulerAngles; // + from_rotation_offsets - to_rotation_offsets;
 
-        to.transform.position = from.transform.TransformPoint(total_relative_pos);
-        to.transform.rotation = Quaternion.Euler(total_relative_rot);
+        to.transform.rotation = Quaternion.Euler(to_rotation_offsets);
+        to.transform.Rotate(Vector3.right, from_rotation_offsets.z);
+        to.transform.Rotate(Vector3.up, from_rotation_offsets.y);
+        to.transform.Rotate(Vector3.forward, from_rotation_offsets.x);
+        to.transform.position = from.transform.TransformPoint(total_relative_pos); 
 
         return true;
     }
@@ -340,7 +356,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         GameObject next = Activate(PrefabProperties.Prefab.RoadStraight);
         ConnectFromFirstAvailable(start, next);
-        
 
         start = next;
         next = Activate(PrefabProperties.Prefab.RoadCrossRight);
@@ -353,18 +368,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
         ConnectFromFirstAvailable(start, next);
 
-        /*start = next;
-        next = Activate(PrefabProperties.Prefab.RoadCrossLeft);
-        ConnectFromFirstAvailable(start, next);
-
-        start = next;
-        next = Activate(PrefabProperties.Prefab.BridgeSlopeDown);
-        ConnectFromFirstAvailable(start, next);
-
-        start = next;
-        next = Activate(PrefabProperties.Prefab.RoadStraight);
-        ConnectFromFirstAvailable(start, next);*/
-
         follow_player_controller = follow_player.GetComponent<PlayerController>();
     }
 
@@ -373,6 +376,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     void Update ()
     {
         DeactivateChainBackwards(follow_player_controller.below);
-        //GenerateForward(follow_player_controller.below, 1);
+        //GenerateForward(follow_player_controller.below, 4);
     }
 }
