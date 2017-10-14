@@ -11,9 +11,13 @@ public class PlayerController : MonoBehaviour
     private float powerInput;
     private float turnInput;
     private Rigidbody rigidbody;
-    private float last_good_known_x = 0.0f;
 
-    public GameObject below;
+    public GameObject below
+    {
+        get;
+        private set;
+    }
+
     private float lockY = 0.0f;
     private bool rotating = false;
 
@@ -108,14 +112,15 @@ public class PlayerController : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, hoverHeight))
         {
+            float delta = hoverHeight - hit.distance;
             float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
             Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
             below = hit.collider.gameObject.transform.parent.gameObject;
         }
-        else
+        else if(rigidbody.velocity.magnitude < 0.001)
         {
-            Vector3 appliedHoverForce = Vector3.up * 0.1f * hoverForce;
+            Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce / 10.0f;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
 
@@ -125,8 +130,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            float proportionalHeight = (hoverHeight - hit.distance) / hoverHeight;
-            Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce * jumpForce;
+            Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
 
