@@ -204,6 +204,11 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         return point;
     }
 
+    private Vector2 RotatePointAroundPoint(float point_x, float point_y, float angle)
+    {
+        return RotatePointAroundPoint(new Vector2(point_x, point_y), angle);
+    }
+
     private Vector2 RotatePointAroundPoint(Vector2 point, float angle)
     {
         float x1 = point.x;
@@ -259,16 +264,34 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         to_offsets.taken[0] = from;
         from_offsets.taken[taken_idx] = to;
 
-        Vector2 correction = RotatePointAroundPoint(new Vector2(to_offsets.position_offsets[0].x, to_offsets.position_offsets[0].z), from_offsets.rotation_offsets[taken_idx].y);
-        to_offsets.position_offsets[0].x = correction.x;
-        to_offsets.position_offsets[0].x = correction.x;
+        Vector3 to_position_offsets = to_offsets.position_offsets[0];
+        Vector3 to_rotation_offsets = to_offsets.rotation_offsets[0];
+        Vector3 from_position_offsets = from_offsets.position_offsets[taken_idx];
+        Vector3 from_rotation_offsets = from_offsets.rotation_offsets[taken_idx];
 
-        Vector3 total_relative_pos = from_offsets.position_offsets[taken_idx] - ;
-        Vector3 total_relative_rot = to.transform.eulerAngles + from_offsets.rotation_offsets[taken_idx] - to_offsets.rotation_offsets[0];
+        Vector2 correction;
 
+        // correct position
+        correction = RotatePointAroundPoint(to_position_offsets.z, to_position_offsets.y, from_rotation_offsets.x);
+        to_position_offsets.z = correction.x;
+        to_position_offsets.y = correction.y;
 
-        to.transform.position = from.transform.position + total_relative_pos;
-        to.transform.eulerAngles = total_relative_rot;
+        correction = RotatePointAroundPoint(to_position_offsets.z, to_position_offsets.x, from_rotation_offsets.y);
+        to_position_offsets.z = correction.x;
+        to_position_offsets.x = correction.y;
+
+        correction = RotatePointAroundPoint(to_position_offsets.x, to_position_offsets.y, from_rotation_offsets.z);
+        to_position_offsets.x = correction.x;
+        to_position_offsets.y = correction.y;
+
+        // correct angles
+
+        // apply transforms
+        Vector3 total_relative_pos = from_position_offsets - to_position_offsets;
+        Vector3 total_relative_rot = from.transform.eulerAngles + from_rotation_offsets - to_rotation_offsets;
+
+        to.transform.position = from.transform.TransformPoint(total_relative_pos);
+        to.transform.rotation = Quaternion.Euler(total_relative_rot);
 
         return true;
     }
@@ -313,6 +336,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         GameObject start = Activate(PrefabProperties.Prefab.RoadEndA);
         start.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        start.transform.rotation = Quaternion.Euler(0.0f, 0.0f, 15.0f);
 
         GameObject next = Activate(PrefabProperties.Prefab.RoadStraight);
         ConnectFromFirstAvailable(start, next);
