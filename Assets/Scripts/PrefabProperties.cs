@@ -18,7 +18,9 @@ public class PrefabProperties : MonoBehaviour {
         RoadEndA,
         RoadEndB,
         RoadStraight,
-        RoadCrossLeft
+        RoadCrossLeft,
+        RoadEndC,
+        RoadEndD,
     }
 
     public Prefab prefab;

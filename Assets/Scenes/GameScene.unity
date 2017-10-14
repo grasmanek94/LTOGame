@@ -302,8 +302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   follow_player: {fileID: 1976853422}
-  low_chance_piece: 75
-  low_chance_piece_randomness: 50
+  low_chance_piece: 20
+  low_chance_piece_randomness: 10
 --- !u!1 &1972367755
 GameObject:
   m_ObjectHideFlags: 0

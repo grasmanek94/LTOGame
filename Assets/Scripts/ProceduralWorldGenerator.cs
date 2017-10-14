@@ -17,6 +17,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> active;
 
     private int creation_tick;
+    private int end_tick;
+
     private System.Random random;
     private List<PrefabProperties.Prefab> random_pieces_normal_chance;
     private List<PrefabProperties.Prefab> random_pieces_low_chance;
@@ -179,7 +181,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
             if(game_object_offsets.taken[i] == null)
             {
                 PrefabProperties.Prefab piece;
-                if (creation_tick % (low_chance_piece + (random.Next() % low_chance_piece_randomness)) == 0)
+                if (creation_tick % (low_chance_piece + (random.Next() % low_chance_piece_randomness)) == 0 || creation_tick > (low_chance_piece + low_chance_piece_randomness))
                 {
                     creation_tick = 1;
                     piece = random_pieces_low_chance[random.Next() % random_pieces_low_chance.Count];
@@ -188,7 +190,25 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                 {
                     piece = random_pieces_normal_chance[random.Next() % random_pieces_normal_chance.Count];
                 }
-                ConnectFromFirstAvailable(from, Activate(piece));
+
+                if (game_object_offsets.taken.Length >= 3 && 
+                    (end_tick % (low_chance_piece/10 + (random.Next() % low_chance_piece_randomness/10)) == 0 || end_tick > (low_chance_piece/10 + low_chance_piece_randomness/10)))
+                {
+                    if(end_tick % 2 == 0)
+                    {
+                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndC));
+                    }
+                    else
+                    {
+                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndD));
+                    }
+                    end_tick = 1;
+                }
+                else
+                {
+                    ++end_tick;
+                    ConnectFromFirstAvailable(from, Activate(piece));
+                }
             }
 
             if (nesting_level + 1 <= max_nesting_level)
@@ -308,6 +328,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected", 3);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected", 3);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected_180", 3);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected_180", 3);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 5);
         InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 5);
@@ -326,6 +348,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         random_pieces_low_chance.Add(PrefabProperties.Prefab.RoadCrossLeft);
 
         creation_tick = 0;
+        end_tick = 0;
 
         GameObject start = Activate(PrefabProperties.Prefab.RoadEndA);
         start.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
@@ -353,6 +376,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     void Update ()
     {
         DeactivateChainBackwards(follow_player_controller.below);
-        GenerateForward(follow_player_controller.below, 2);
+        GenerateForward(follow_player_controller.below, 4);
     }
 }
