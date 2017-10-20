@@ -1546,4 +1546,5 @@ MonoBehaviour:
   turnSpeed: 50
   hoverForce: 40
   hoverHeight: 2.33
-  jumpForce: 2
+  jumpForce: 10
+  scoreText: {fileID: 0}

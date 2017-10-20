@@ -13,7 +13,11 @@ public class PlayerController : MonoBehaviour
     private float turnInput;
     private Rigidbody rigidbody;
 
-    public int score;
+    public int score {
+        get;
+        private set;
+    }
+
     private int old_score;
     public Text scoreText;
 
@@ -46,6 +50,8 @@ public class PlayerController : MonoBehaviour
     {
         rigidbody = GetComponent<Rigidbody>();
         below = null;
+        score = 0;
+        old_score = 0;
     }
 
     void Update()
@@ -150,11 +156,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.localRotation = Quaternion.Euler(transform.localRotation.eulerAngles.x, lockY, transform.localRotation.eulerAngles.z);
         }
-    }
-
-    public static float Remap(float value, float from1, float to1, float from2, float to2)
-    {
-        return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
     }
 
     void OnTriggerEnter(Collider other)

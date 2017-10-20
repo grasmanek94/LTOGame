@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 282301353}
   - component: {fileID: 282301355}
   - component: {fileID: 282301354}
+  - component: {fileID: 282301356}
   m_Layer: 5
   m_Name: ScoreText
   m_TagString: Untagged
@@ -319,7 +320,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -346,6 +347,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 282301352}
+--- !u!114 &282301356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 282301352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -900027084, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
+  m_EffectDistance: {x: 2, y: 2}
+  m_UseGraphicAlpha: 1
 --- !u!1001 &811120721
 Prefab:
   m_ObjectHideFlags: 0
@@ -394,6 +409,11 @@ Prefab:
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114473543002835882, guid: 1046ec4c9ca0ef84984e0106900d1646,
+        type: 2}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 282301354}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1046ec4c9ca0ef84984e0106900d1646, type: 2}
   m_IsPrefabParent: 0
