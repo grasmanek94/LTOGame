@@ -5,7 +5,6 @@ public class PlayerSoundController : MonoBehaviour
 {
 
     public AudioSource jet_sound;
-    private float jet_pitch;
     private const float LowPitch = .1f;
     private const float HighPitch = 2.0f;
     private const float SpeedToRevs = .01f;
