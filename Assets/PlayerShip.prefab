@@ -1514,7 +1514,7 @@ Rigidbody:
   m_GameObject: {fileID: 1520210415051762}
   serializedVersion: 2
   m_Mass: 6
-  m_Drag: 0.33
+  m_Drag: 1
   m_AngularDrag: 1.3
   m_UseGravity: 1
   m_IsKinematic: 0
@@ -1640,5 +1640,5 @@ MonoBehaviour:
   turnSpeed: 50
   hoverForce: 40
   hoverHeight: 2.33
-  jumpForce: 2
+  jumpForce: 10
   scoreText: {fileID: 0}

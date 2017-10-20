@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
         private set;
     }
 
+    public GameObject hit_debug;
+
     private float lockY = 0.0f;
     private bool rotating = false;
 
@@ -71,79 +73,98 @@ public class PlayerController : MonoBehaviour
         UpdateScoreText();
     }
 
+    float CalculateAngleDifference(Vector3 pos_a, Vector3 pos_b, float angle)
+    {
+        RaycastHit hit;
+        bool successes = true;
+        float add_euler = 0.0f;
+        float delta = 0.0f;
+        float distance_a = hoverHeight * 4.0f;
+        float distance_b = hoverHeight * 4.0f;
+
+        if (Physics.Raycast(pos_a, -Vector3.up, out hit, distance_a))
+        {
+            distance_a = hit.distance;
+        }
+        else
+        {
+            successes = false;
+        }
+
+        if (Physics.Raycast(pos_b, -Vector3.up, out hit, distance_b))
+        {
+            distance_b = hit.distance;
+        }
+        else
+        {
+            successes = false;
+        }
+
+        distance_a += 1.0f;
+        distance_b += 1.0f;
+
+        delta = 45.0f - (Mathf.Rad2Deg * Mathf.Atan2(distance_b, distance_a));
+        add_euler = Mathf.Sign(delta) * Mathf.Max(Mathf.Abs(delta), 7.0f);
+
+        if (!successes)
+        {
+            add_euler = Mathf.Sign(angle - 180.0f) * Mathf.Max(Mathf.Sqrt(180.0f - Mathf.Abs(angle - 180.0f)) / 5.0f, 15.0f);
+        }
+
+        return add_euler;
+    }
+
     void MakeFlatToSurface()
     {
         Vector3 euler = transform.localRotation.eulerAngles;
 
-        float add_euler_z = Mathf.Sign(euler.z - 180.0f) * Mathf.Max(Mathf.Sqrt(180.0f - Mathf.Abs(euler.z - 180.0f)) / 5.0f, 15.0f);
-
-        RaycastHit hit;
-        
         Vector3 pos_front = transform.TransformPoint(0.0f, 0.0f, 14.0f);
         Vector3 pos_back = transform.TransformPoint(0.0f, 0.0f, -14.0f);
+        Vector3 pos_left = transform.TransformPoint(-1.25f, 0.0f, 0.0f);
+        Vector3 pos_right = transform.TransformPoint(1.25f, 0.0f, 0.0f);
 
-        float distance_front = 9.0f;
-        float distance_back = 9.0f;
-
-        bool successes = true;
-        if (Physics.Raycast(pos_front, -transform.up, out hit, distance_front))
-        {
-            distance_front = hit.distance;
-        }
-        else
-        {
-            successes = false;
-        }
-
-        if (Physics.Raycast(pos_back, -transform.up, out hit, distance_back))
-        {
-            distance_back = hit.distance;
-        }
-        else
-        {
-            successes = false;
-        }
-
-        distance_front += 1.0f;
-        distance_back += 1.0f;
-
-        float delta = 45.0f - (Mathf.Rad2Deg * Mathf.Atan2(distance_back, distance_front));
-        float add_euler_x = Mathf.Sign(delta) * Mathf.Max(Mathf.Abs(delta), 7.0f);
-
-        if(!successes)
-        {
-            add_euler_x = Mathf.Sign(euler.x - 180.0f) * Mathf.Max(Mathf.Sqrt(180.0f - Mathf.Abs(euler.x - 180.0f)) / 5.0f, 15.0f);
-        }
-
-        rigidbody.AddRelativeTorque(add_euler_x, 0f, add_euler_z);
+        // apply calculated torque
+        rigidbody.AddRelativeTorque(
+            3.0f * CalculateAngleDifference(pos_front, pos_back, euler.x), 
+            0f,
+            3.0f * CalculateAngleDifference(pos_left, pos_right, euler.z)
+        );
     }
 
-    void FixedUpdate()
+    void Hover()
     {
-        Ray ray = new Ray(transform.position, -transform.up);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, hoverHeight))
+        if (Physics.Raycast(transform.position, -Vector3.up, out hit
+            //, hoverHeight
+            ))
         {
-            float delta = hoverHeight - hit.distance;
-            float proportionalHeight = Mathf.Pow(hoverHeight - hit.distance, 3.0f) / hoverHeight;
+            float delta = Mathf.Clamp(hoverHeight - hit.distance, -hoverHeight, hoverHeight);
+
+            float proportionalHeight = Mathf.Sign(delta) * Mathf.Pow(Mathf.Abs(delta), 2.0f) / hoverHeight;
+
             Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
-            
+
+            below = hit.collider.gameObject.transform.root.gameObject;
+            if (hit_debug != null)
+            {
+                hit_debug.transform.position = hit.point;
+                hit_debug.transform.LookAt(rigidbody.transform);
+            }
         }
-        else if(rigidbody.velocity.magnitude < 0.001)
+        else if (rigidbody.velocity.magnitude < 0.001)
         {
             Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce;
             rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
         }
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            below = hit.collider.gameObject.transform.root.gameObject;
-        }
-
         rigidbody.AddRelativeForce(turnInput * turnSpeed, 0f, powerInput * speed);
+    }
 
+    void FixedUpdate()
+    {
+        Hover();
         MakeFlatToSurface();
 
         if (Input.GetKeyDown(KeyCode.Space))
