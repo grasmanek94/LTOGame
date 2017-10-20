@@ -1516,8 +1516,8 @@ Rigidbody:
   m_GameObject: {fileID: 1520210415051762}
   serializedVersion: 2
   m_Mass: 6
-  m_Drag: 1
-  m_AngularDrag: 1.3
+  m_Drag: 2
+  m_AngularDrag: 2
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -1638,9 +1638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a05e6dcbf1199c4c8b3212807fb789b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hoverForce: 65
-  hoverHeight: 3.5
-  jumpForce: 20
+  hoverForce: 40
+  hoverHeight: 1.5
+  jumpForce: 30
 --- !u!114 &114473543002835882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1652,7 +1652,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c32898171fabc0546a31508ddf441c60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 200
   turnSpeed: 50
   scoreText: {fileID: 0}
 --- !u!114 &114809486865258142

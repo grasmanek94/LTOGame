@@ -90,15 +90,14 @@ public class HoverEngine : MonoBehaviour {
     {
         RaycastHit hit;
 
-        float delta = hoverHeight;
+        float delta = -0.33f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit))
         {
             delta = Mathf.Clamp(hoverHeight - hit.distance, -hoverHeight, hoverHeight);
             below = hit.collider.gameObject.transform.root.gameObject;
         }
 
-        float proportionalHeight = Mathf.Sign(delta) * Mathf.Pow(Mathf.Abs(delta), 2.0f) / hoverHeight;
-        Vector3 appliedHoverForce = Vector3.up * proportionalHeight * hoverForce;
+        Vector3 appliedHoverForce = Vector3.up * delta * hoverForce;
         rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
     }
 

@@ -432,6 +432,11 @@ Prefab:
       propertyPath: hit_debug
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 114473543002835882, guid: 1046ec4c9ca0ef84984e0106900d1646,
+        type: 2}
+      propertyPath: speed
+      value: 200
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1046ec4c9ca0ef84984e0106900d1646, type: 2}
   m_IsPrefabParent: 0
