@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PlayerController : MonoBehaviour
     private float powerInput;
     private float turnInput;
     private Rigidbody rigidbody;
+
+    public int score;
+    private int old_score;
+    public Text scoreText;
 
     public GameObject below
     {
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(RotateMe(Vector3.up * -90.0f, 0.1f));
         }
+
+        UpdateScoreText();
     }
 
     void MakeFlatToSurface()
@@ -148,5 +155,23 @@ public class PlayerController : MonoBehaviour
     public static float Remap(float value, float from1, float to1, float from2, float to2)
     {
         return (value - from1) / (to1 - from1) * (to2 - from2) + from2;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Pick Up"))
+        {
+            other.gameObject.SetActive(false);
+            score += 1;
+        }
+    }
+
+    void UpdateScoreText()
+    {
+        if (old_score != score)
+        {
+            old_score = score;
+            scoreText.text = "Score: " + score.ToString();
+        }
     }
 }
