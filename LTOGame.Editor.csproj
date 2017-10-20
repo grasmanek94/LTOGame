@@ -138,15 +138,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ToUseAssets\SplineStuff\Scripts\Editor\BezierEditor.cs" />
-    <Compile Include="Assets\ToUseAssets\SplineStuff\Scripts\Editor\LineEditor.cs" />
-    <Compile Include="Assets\ToUseAssets\SplineStuff\Scripts\Editor\SplineEditor.cs" />
     <Compile Include="Assets\ToUseAssets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\ToUseAssets\Poly2Tri\AUTHORS.txt" />
-    <None Include="Assets\ToUseAssets\Poly2Tri\LICENSE.txt" />
     <None Include="Assets\ToUseAssets\Standard Assets\Fonts\OpenSans\License!.txt" />
     <None Include="Assets\ToUseAssets\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
   </ItemGroup>
