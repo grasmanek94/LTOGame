@@ -28,11 +28,14 @@ public class PlayerController : MonoBehaviour
 
         score = 0;
         old_score = 0;
+
+        powerInput = 1.0f;
     }
 
     void Update()
     {
-        powerInput = Input.GetAxis("Vertical");
+        //powerInput = Input.GetAxis("Vertical");
+
         turnInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space))

@@ -6,9 +6,13 @@ public class HoverEngine : MonoBehaviour
 {
 
     public float hoverForce = 40.0f;
-    public float hoverHeight = 2.33f;
-    public float jumpForce = 10.0f;
-    public float seconds_stuck = 0.0f;
+    public float hoverHeight = 1.5f;
+    public float jumpForce = 20.0f;
+    public float seconds_stuck
+    {
+        get;
+        private set;
+    }
 
     private Rigidbody rigidbody;
 
@@ -27,6 +31,7 @@ public class HoverEngine : MonoBehaviour
         below = null;
 
         seconds_stuck_at = 0.0f;
+        seconds_stuck = 0.0f;
         is_stuck = false;
     }
 

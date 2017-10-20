@@ -1641,6 +1641,7 @@ MonoBehaviour:
   hoverForce: 40
   hoverHeight: 1.5
   jumpForce: 20
+  seconds_stuck: 0
 --- !u!114 &114473543002835882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1653,7 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
-  turnSpeed: 50
+  turnSpeed: 500
   scoreText: {fileID: 0}
 --- !u!114 &114809486865258142
 MonoBehaviour:
