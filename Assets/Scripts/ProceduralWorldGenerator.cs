@@ -10,7 +10,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     public int low_chance_piece;
     public int low_chance_piece_randomness;
 
-    private PlayerController follow_player_controller;
+    private HoverEngine player_hover_engine;
 
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> instances;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> inactive;
@@ -368,14 +368,14 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
         ConnectFromFirstAvailable(start, next);*/
 
-        follow_player_controller = follow_player.GetComponent<PlayerController>();
+        player_hover_engine = follow_player.GetComponent<HoverEngine>();
     }
 
 
     // Update is called once per frame
     void Update ()
     {
-        DeactivateChainBackwards(follow_player_controller.below);
-        GenerateForward(follow_player_controller.below, 4);
+        DeactivateChainBackwards(player_hover_engine.below);
+        GenerateForward(player_hover_engine.below, 4);
     }
 }

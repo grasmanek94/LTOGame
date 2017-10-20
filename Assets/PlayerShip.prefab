@@ -244,6 +244,8 @@ GameObject:
   - component: {fileID: 23194652708742968}
   - component: {fileID: 65775874288214796}
   - component: {fileID: 114473543002835882}
+  - component: {fileID: 114809486865258142}
+  - component: {fileID: 114405617933929786}
   - component: {fileID: 82268883899882524}
   - component: {fileID: 114148712665204464}
   m_Layer: 0
@@ -1625,6 +1627,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jet_sound: {fileID: 82268883899882524}
+--- !u!114 &114405617933929786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520210415051762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a05e6dcbf1199c4c8b3212807fb789b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverForce: 65
+  hoverHeight: 3.5
+  jumpForce: 20
 --- !u!114 &114473543002835882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1638,7 +1654,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 100
   turnSpeed: 50
-  hoverForce: 40
-  hoverHeight: 2.33
-  jumpForce: 10
   scoreText: {fileID: 0}
+--- !u!114 &114809486865258142
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520210415051762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3cbfd8db902d364a8d2120138a82a6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
