@@ -2,14 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoverEngine : MonoBehaviour {
+public class HoverEngine : MonoBehaviour
+{
 
     public float hoverForce = 40.0f;
     public float hoverHeight = 2.33f;
     public float jumpForce = 10.0f;
+    public float seconds_stuck = 0.0f;
 
     private Rigidbody rigidbody;
 
+    private float seconds_stuck_at;
+    private bool is_stuck;
+    
     public GameObject below
     {
         get;
@@ -20,6 +25,9 @@ public class HoverEngine : MonoBehaviour {
     {
         rigidbody = GetComponent<Rigidbody>();
         below = null;
+
+        seconds_stuck_at = 0.0f;
+        is_stuck = false;
     }
 
     public void Jump()
@@ -95,6 +103,21 @@ public class HoverEngine : MonoBehaviour {
         {
             delta = Mathf.Clamp(hoverHeight - hit.distance, -hoverHeight, hoverHeight);
             below = hit.collider.gameObject.transform.root.gameObject;
+            if (is_stuck)
+            {
+                is_stuck = false;
+                seconds_stuck = 0.0f;
+            }
+        }
+        else
+        {
+            if(!is_stuck)
+            {
+                is_stuck = true;
+                seconds_stuck_at = Time.time;
+            }
+            seconds_stuck = Time.time - seconds_stuck_at;
+            Debug.Log(seconds_stuck);
         }
 
         Vector3 appliedHoverForce = Vector3.up * delta * hoverForce;
@@ -105,5 +128,11 @@ public class HoverEngine : MonoBehaviour {
     {
         Hover();
         MakeFlatToSurface();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce / 2.0f;
+        rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
     }
 }
