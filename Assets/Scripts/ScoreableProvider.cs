@@ -4,9 +4,28 @@ using UnityEngine;
 
 public class ScoreableProvider : MonoBehaviour {
 
+    System.Random random;
+    public Vector3[] positions;
 
-	// Use this for initialization
-	void OnEnable ()
+    private bool Do(double probability)
+    {
+        return random.NextDouble() < probability;
+    }
+
+    public enum Difficulty
+    {
+        RANDOM,
+        EASY,
+        MEDIUM,
+        HARD,
+    }
+
+    void Awake()
+    {
+        random = new System.Random();
+    }
+
+    void OnEnable ()
     {
 		
 	}

@@ -108,7 +108,6 @@
     <Compile Include="Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\Scoreable.cs" />
     <Compile Include="Assets\Scripts\ScoreableProvider.cs" />
-    <Compile Include="Assets\Scripts\ScoreObjectsManager.cs" />
     <Compile Include="Assets\Scripts\Scorer.cs" />
     <Compile Include="Assets\SkyBoxes\MouseLook.cs" />
     <Compile Include="Assets\SkyBoxes\RecordScreens.cs" />
