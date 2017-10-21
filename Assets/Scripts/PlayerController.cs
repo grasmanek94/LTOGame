@@ -12,22 +12,11 @@ public class PlayerController : MonoBehaviour
     private HoverEngine hover_engine;
     private HeadingRotator heading_rotator;
 
-    public int score {
-        get;
-        private set;
-    }
-
-    private int old_score;
-    public Text scoreText;
-    
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         hover_engine = GetComponent<HoverEngine>();
         heading_rotator = GetComponent<HeadingRotator>();
-
-        score = 0;
-        old_score = 0;
 
         powerInput = 1.0f;
     }
@@ -50,30 +39,10 @@ public class PlayerController : MonoBehaviour
         {
             heading_rotator.Left();
         }
-
-        UpdateScoreText();
     }
 
     private void FixedUpdate()
     {
         rigidbody.AddRelativeForce(turnInput * turnSpeed, 0f, powerInput * speed);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Pick Up"))
-        {
-            other.gameObject.SetActive(false);
-            score += 1;
-        }
-    }
-
-    void UpdateScoreText()
-    {
-        if (old_score != score)
-        {
-            old_score = score;
-            scoreText.text = "Score: " + score.ToString();
-        }
     }
 }

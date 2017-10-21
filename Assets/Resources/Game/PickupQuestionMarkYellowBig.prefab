@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 64805574404753930}
   - component: {fileID: 114127663958868174}
   m_Layer: 0
-  m_Name: PickupPrototype
+  m_Name: PickupQuestionMarkYellowBig
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +45,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: fed4e78bda2b3de45954637fee164b8c, type: 2}
+  - {fileID: 2100000, guid: ad5e124583e4082408e1c6a18497daec, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

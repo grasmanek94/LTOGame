@@ -106,6 +106,8 @@
     <Compile Include="Assets\Scripts\ProceduralWorldGenerator.cs" />
     <Compile Include="Assets\Scripts\RandomStateExtension.cs" />
     <Compile Include="Assets\Scripts\Rotator.cs" />
+    <Compile Include="Assets\Scripts\Scoreable.cs" />
+    <Compile Include="Assets\Scripts\Scorer.cs" />
     <Compile Include="Assets\SkyBoxes\MouseLook.cs" />
     <Compile Include="Assets\SkyBoxes\RecordScreens.cs" />
     <Compile Include="Assets\SkyBoxes\SkyBoxPicker.cs" />
