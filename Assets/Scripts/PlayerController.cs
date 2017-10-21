@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //powerInput = Input.GetAxis("Vertical");
+        powerInput = Input.GetAxis("Vertical");
 
         turnInput = Input.GetAxis("Horizontal");
 

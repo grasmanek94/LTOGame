@@ -1639,9 +1639,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverForce: 40
-  hoverHeight: 1.5
+  hoverHeight: 1.33
   jumpForce: 20
-  seconds_stuck: 0
 --- !u!114 &114473543002835882
 MonoBehaviour:
   m_ObjectHideFlags: 1

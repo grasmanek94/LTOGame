@@ -351,7 +351,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         end_tick = 0;
 
         GameObject start = Activate(PrefabProperties.Prefab.RoadEndA);
-        start.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+        start.transform.position = new Vector3(0.0f, -1.33f, 0.0f);
         start.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         GameObject next = Activate(PrefabProperties.Prefab.RoadStraight);
