@@ -244,6 +244,7 @@ GameObject:
   - component: {fileID: 23194652708742968}
   - component: {fileID: 65775874288214796}
   - component: {fileID: 114473543002835882}
+  - component: {fileID: 114034747548062992}
   - component: {fileID: 114809486865258142}
   - component: {fileID: 114405617933929786}
   - component: {fileID: 114450242536069858}
@@ -1616,6 +1617,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &114034747548062992
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520210415051762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f9ef4f91d9b0e48b48eb46b53b442b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Jump Recharge
+  full_charge: 1
+  min_charge: 0
+  recharge_time: 1
+  recharge_delay: 0.25
+  initial_charge: 1
+  refill_type: 1
 --- !u!114 &114148712665204464
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1642,6 +1661,7 @@ MonoBehaviour:
   hoverForce: 40
   hoverHeight: 1.33
   jumpForce: 20
+  jumpMultiplier: 1
 --- !u!114 &114450242536069858
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1653,6 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6311879b705a86e4babfb584adf5a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!114 &114473543002835882
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1666,7 +1687,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 300
   turnSpeed: 500
-  scoreText: {fileID: 0}
+  seconds_stuck_lose_life: 1
+  lives: 3
+  jump_recharge: {fileID: 114034747548062992}
 --- !u!114 &114809486865258142
 MonoBehaviour:
   m_ObjectHideFlags: 1

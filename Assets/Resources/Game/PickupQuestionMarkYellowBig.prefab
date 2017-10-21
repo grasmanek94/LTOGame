@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3770f1832038804d8deb70510fc8342, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Trigger: 0
+  Trigger: 1
   Collision: 0
   TriggerAction: 1
   CollisionAction: 0

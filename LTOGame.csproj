@@ -84,6 +84,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="LTOGame.Plugins.csproj">
+      <Project>{1390F63F-BAA4-D536-4129-F920A7B2C580}</Project>
+      <Name>LTOGame.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\CrossPlatformInput\Scripts\AxisTouchButton.cs" />
     <Compile Include="Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
     <Compile Include="Assets\CrossPlatformInput\Scripts\CrossPlatformInputManager.cs" />
@@ -105,6 +111,7 @@
     <Compile Include="Assets\Scripts\PrefabProperties.cs" />
     <Compile Include="Assets\Scripts\ProceduralWorldGenerator.cs" />
     <Compile Include="Assets\Scripts\RandomStateExtension.cs" />
+    <Compile Include="Assets\Scripts\Rechargeable.cs" />
     <Compile Include="Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\Scoreable.cs" />
     <Compile Include="Assets\Scripts\ScoreableProvider.cs" />

@@ -8,6 +8,7 @@ public class HoverEngine : MonoBehaviour
     public float hoverForce = 40.0f;
     public float hoverHeight = 1.5f;
     public float jumpForce = 20.0f;
+    public float jumpMultiplier = 1.0f;
     public float seconds_stuck
     {
         get;
@@ -37,7 +38,7 @@ public class HoverEngine : MonoBehaviour
 
     public void Jump()
     {
-        Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce;
+        Vector3 appliedHoverForce = Vector3.up * hoverForce * jumpForce * jumpMultiplier;
         rigidbody.AddForce(appliedHoverForce, ForceMode.Acceleration);
     }
 
@@ -122,7 +123,7 @@ public class HoverEngine : MonoBehaviour
                 seconds_stuck_at = Time.time;
             }
             seconds_stuck = Time.time - seconds_stuck_at;
-            Debug.Log(seconds_stuck);
+            //Debug.Log(seconds_stuck);
         }
 
         Vector3 appliedHoverForce = Vector3.up * delta * hoverForce;
