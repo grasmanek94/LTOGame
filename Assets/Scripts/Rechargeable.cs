@@ -25,6 +25,12 @@ public class Rechargeable : MonoBehaviour {
         private set;
     }
 
+    public float percentage
+    {
+        get;
+        private set;
+    }
+
     private float start_refill;
     private float refill_delta;
     private float last_refill;
@@ -37,13 +43,18 @@ public class Rechargeable : MonoBehaviour {
     private void OnEnable()
     {
         charge = initial_charge;
+        percentage = initial_charge / (full_charge - min_charge);
+        if (refill_type == Refill.EXPONENTIAL)
+        {
+            percentage *= percentage;
+        }
     }
 
     void FixedUpdate ()
     {
 		if(charge < full_charge && Time.time >= start_refill)
         {
-            float percentage = (Time.time - start_refill) / recharge_time;
+            percentage = (Time.time - start_refill) / recharge_time;
             if(refill_type == Refill.EXPONENTIAL)
             {
                 percentage *= percentage;
@@ -52,8 +63,8 @@ public class Rechargeable : MonoBehaviour {
             if(charge > full_charge)
             {
                 charge = full_charge;
+                percentage = 1.0f;
             }
-            Debug.Log(charge);
         }
 	}
 

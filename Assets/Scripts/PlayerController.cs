@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private float turnInput;
 
     public Rechargeable jump_recharge;
+    public Image jump_charge_ui;
+    private ProgressBar.ProgressRadialBehaviour jump_charge;
+
     private Rigidbody rigidbody;
     private HoverEngine hover_engine;
     private HeadingRotator heading_rotator;
@@ -21,6 +24,7 @@ public class PlayerController : MonoBehaviour
         rigidbody = GetComponent<Rigidbody>();
         hover_engine = GetComponent<HoverEngine>();
         heading_rotator = GetComponent<HeadingRotator>();
+        jump_charge = jump_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
 
         powerInput = 1.0f;
     }
@@ -50,6 +54,8 @@ public class PlayerController : MonoBehaviour
             // lose life
 
         }
+
+        jump_charge.Value = 100.0f * jump_recharge.percentage;
     }
 
     private void FixedUpdate()
