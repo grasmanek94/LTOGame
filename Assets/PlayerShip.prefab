@@ -1673,6 +1673,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6311879b705a86e4babfb584adf5a25a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplier: 1
   scoreText: {fileID: 0}
 --- !u!114 &114473543002835882
 MonoBehaviour:
@@ -1686,10 +1687,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  default_speed: 300
   turnSpeed: 500
   seconds_stuck_lose_life: 1
   lives: 3
+  health: 1000
+  max_health: 1000
   jump_recharge: {fileID: 114034747548062992}
+  jump_charge_ui: {fileID: 0}
 --- !u!114 &114809486865258142
 MonoBehaviour:
   m_ObjectHideFlags: 1

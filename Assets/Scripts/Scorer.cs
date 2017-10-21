@@ -11,6 +11,7 @@ public class Scorer : MonoBehaviour {
         private set;
     }
 
+    public float multiplier = 1.0f;
     private float old_score;
     public Text scoreText;
 
@@ -39,7 +40,7 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Trigger)
         {
-            score += scoreable.TriggerScore;
+            score += (scoreable.TriggerScore * multiplier);
         }
     }
 
@@ -48,7 +49,7 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Collision)
         {
-            score += scoreable.CollisionScore;
+            score += (scoreable.CollisionScore * multiplier);
         }
     }
 }

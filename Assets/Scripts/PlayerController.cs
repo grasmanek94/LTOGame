@@ -4,10 +4,14 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 90f;
-    public float turnSpeed = 5f;
+    public float speed = 300f;
+    public float default_speed = 300f;
+    public float turnSpeed = 500f;
     public float seconds_stuck_lose_life = 1.0f;
     public int lives = 3;
+    public float health = 1000.0f;
+    public float max_health = 1000.0f;
+
     private float powerInput;
     private float turnInput;
 
@@ -15,16 +19,23 @@ public class PlayerController : MonoBehaviour
     public Image jump_charge_ui;
     private ProgressBar.ProgressRadialBehaviour jump_charge;
 
+    public Image health_charge_ui;
+    private ProgressBar.ProgressRadialBehaviour health_charge;
+
     private Rigidbody rigidbody;
     private HoverEngine hover_engine;
     private HeadingRotator heading_rotator;
+    private Scorer scorer;
 
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         hover_engine = GetComponent<HoverEngine>();
         heading_rotator = GetComponent<HeadingRotator>();
+        scorer = GetComponent<Scorer>();
+
         jump_charge = jump_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
+        health_charge = health_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
 
         powerInput = 1.0f;
     }
@@ -56,6 +67,7 @@ public class PlayerController : MonoBehaviour
         }
 
         jump_charge.Value = 100.0f * jump_recharge.percentage;
+        health_charge.Value = health / max_health * 100.0f;
     }
 
     private void FixedUpdate()
