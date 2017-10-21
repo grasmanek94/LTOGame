@@ -41,7 +41,7 @@ public class Scorer : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Collision)
