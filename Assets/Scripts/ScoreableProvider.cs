@@ -32,6 +32,11 @@ public class ScoreableProvider : MonoBehaviour {
                 }
             }
 
+            if(probability_sum < 1.0f)
+            {
+                probability_sum = 1.0f;
+            }
+
             return max;
         }
 
