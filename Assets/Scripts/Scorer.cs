@@ -27,7 +27,10 @@ public class Scorer : MonoBehaviour {
         if (old_score != score)
         {
             old_score = score;
-            scoreText.text = "Score: " + ((int)score).ToString();
+            if (scoreText != null)
+            {
+                scoreText.text = "Score: " + ((int)score).ToString();
+            }
         }
     }
 
@@ -36,7 +39,6 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Trigger)
         {
-            scoreable.PerformTriggerAction();
             score += scoreable.TriggerScore;
         }
     }
@@ -46,7 +48,6 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Collision)
         {
-            scoreable.PerformCollisionAction();
             score += scoreable.CollisionScore;
         }
     }

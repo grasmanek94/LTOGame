@@ -31,6 +31,18 @@ public class Scoreable : MonoBehaviour
         }
     }
 
+    private void PerformEvent(Action input, GameObject other)
+    {
+        if (input != Action.NOTHING)
+        {
+            Scorer scorer = other.GetComponent<Scorer>();
+            if (scorer != null)
+            {
+                PerformAction(input);
+            }
+        }
+    }
+
     public void PerformTriggerAction()
     {
         PerformAction(TriggerAction);
@@ -39,5 +51,15 @@ public class Scoreable : MonoBehaviour
     public void PerformCollisionAction()
     {
         PerformAction(CollisionAction);
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        PerformEvent(TriggerAction, other.gameObject);
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        PerformEvent(CollisionAction, other.gameObject);
     }
 }
