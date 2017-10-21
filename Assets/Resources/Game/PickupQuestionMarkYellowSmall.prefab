@@ -126,5 +126,6 @@ MonoBehaviour:
   Collision: 0
   TriggerAction: 1
   CollisionAction: 0
+  difficulty: 1
   TriggerScore: 15
   CollisionScore: 0

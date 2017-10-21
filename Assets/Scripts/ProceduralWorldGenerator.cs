@@ -12,7 +12,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
     private HoverEngine player_hover_engine;
 
-    private Dictionary<PrefabProperties.Prefab, List<GameObject>> instances;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> inactive;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> active;
 
@@ -33,9 +32,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         GameObject original = (GameObject)Resources.Load(resource);
         PrefabProperties.Prefab which = original.GetComponent<PrefabProperties>().prefab;
 
-        if (!instances.ContainsKey(which))
+        if (!inactive.ContainsKey(which))
         {
-            instances.Add(which, new List<GameObject>());
             inactive.Add(which, new List<GameObject>());
             active.Add(which, new List<GameObject>());
         }
@@ -46,7 +44,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
             game_object.SetActive(false);
 
-            instances[which].Add(game_object);
             inactive[which].Add(game_object);
         }
     }
@@ -314,7 +311,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         random_pieces_normal_chance = new List<PrefabProperties.Prefab>();
         random_pieces_low_chance = new List<PrefabProperties.Prefab>();
 
-        instances = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
 

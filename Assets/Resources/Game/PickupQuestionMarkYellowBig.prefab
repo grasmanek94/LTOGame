@@ -112,6 +112,7 @@ MonoBehaviour:
   Collision: 0
   TriggerAction: 1
   CollisionAction: 0
+  difficulty: 0
   TriggerScore: 10
   CollisionScore: 0
 --- !u!114 &114127663958868174

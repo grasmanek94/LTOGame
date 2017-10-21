@@ -4,6 +4,14 @@ using UnityEngine;
 
 public class Scoreable : MonoBehaviour
 {
+    public enum Difficulty
+    {
+        EASY,
+        MEDIUM,
+        HARD,
+        EXTREME
+    }
+
     public enum Action
     {
         NOTHING,
@@ -15,6 +23,8 @@ public class Scoreable : MonoBehaviour
 
     public Action TriggerAction = Action.NOTHING;
     public Action CollisionAction = Action.NOTHING;
+
+    public Difficulty difficulty = Difficulty.EASY;
 
     public float TriggerScore = 0.0f;
     public float CollisionScore = 0.0f;
