@@ -124,6 +124,9 @@ public class PlayerController : MonoBehaviour
 
         if (health <= 0.0f)
         {
+            awoken_complete = false;
+            awoken_time = Time.time;
+            powerInput = 0.0f;
             checkpointable.Reset();
             health = max_health;
             lives -= 1;
