@@ -38,6 +38,8 @@ public class PlayerController : MonoBehaviour
     private float seconds_stuck_last;
     private int old_lives = -1;
     private float speed_multiplier_calculated;
+    private float awoken_time;
+    private bool awoken_complete;
 
     void Awake()
     {
@@ -50,10 +52,12 @@ public class PlayerController : MonoBehaviour
         jump_charge = jump_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
         health_charge = health_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
 
-        powerInput = 1.0f;
+        powerInput = 0.0f;
         old_lives = -1;
         actual_speed = speed;
         speed_increade_per_delta_t = speed_increase_per_minute / 60.0f;
+        awoken_time = Time.time;
+        awoken_complete = false;
     }
 
     void UpdateLivesText()
@@ -67,8 +71,15 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if(!awoken_complete && Time.time - awoken_time > 1.0f)
+        {
+            awoken_complete = true;
+            powerInput = 1.0f;
+        }
+
         actual_speed += Time.deltaTime * speed_increade_per_delta_t;
         speed_multiplier_calculated = actual_speed / speed;
+        hover_engine.hoverMultiplier = speed_multiplier_calculated;
         scorer.multiplier = Mathf.Sqrt(speed_multiplier_calculated);
         
         //powerInput = Input.GetAxis("Vertical");
@@ -77,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            hover_engine.jumpMultiplier = jump_recharge.UseCharge() * speed_multiplier_calculated;
+            hover_engine.jumpMultiplier = jump_recharge.UseCharge();
             hover_engine.Jump();
         }
         if (Input.GetKeyDown("e"))
@@ -116,7 +127,7 @@ public class PlayerController : MonoBehaviour
             seconds_stuck_last = 0.0f;
         }
 
-        jump_charge.Value = 100.0f * jump_recharge.percentage;
+        jump_charge.Value = jump_recharge.percentage * 100.0f;
         health_charge.Value = health / max_health * 100.0f;
 
         UpdateLivesText();
