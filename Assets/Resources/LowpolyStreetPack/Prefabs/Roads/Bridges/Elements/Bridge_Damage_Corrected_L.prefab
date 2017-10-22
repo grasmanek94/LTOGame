@@ -299,4 +299,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_points: []
+  score_points:
+  - difficulty: 3
+    score_point_set:
+    - probability: 0.2
+      offsets:
+      - {x: 0, y: -1.1, z: -4.33}
+  - difficulty: 0
+    score_point_set:
+    - probability: 0.6
+      offsets:
+      - {x: 0, y: 4.5, z: -4.33}
+  - difficulty: 1
+    score_point_set:
+    - probability: 0.4
+      offsets:
+      - {x: -3, y: 2, z: 26}
+    - probability: 0.4
+      offsets:
+      - {x: 3, y: 2, z: 26}
+  - difficulty: 1
+    score_point_set:
+    - probability: 0.4
+      offsets:
+      - {x: -3, y: 2, z: -32}
+    - probability: 0.4
+      offsets:
+      - {x: 3, y: 2, z: -32}
