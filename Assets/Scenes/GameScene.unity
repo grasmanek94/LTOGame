@@ -719,6 +719,11 @@ Prefab:
       propertyPath: livesText
       value: 
       objectReference: {fileID: 2006054086}
+    - target: {fileID: 114473543002835882, guid: 1046ec4c9ca0ef84984e0106900d1646,
+        type: 2}
+      propertyPath: life_regen_factor
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1046ec4c9ca0ef84984e0106900d1646, type: 2}
   m_IsPrefabParent: 0

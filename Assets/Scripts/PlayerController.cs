@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 300f;
-    public float default_speed = 300f;
+    private float speed_limit = 750.0f;
     public float turnSpeed = 500f;
     public float seconds_stuck_lose_life = 0.50f;
     public int lives = 3;
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public float max_health = 1000.0f;
     public float lose_life_per_second_stuck = 666.0f;
     public float speed_increase_per_minute = 50.0f;
+    public float life_regen_factor = 1000.0f;
 
     private float actual_speed;
     private float powerInput;
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
     private float speed_multiplier_calculated;
     private float awoken_time;
     private bool awoken_complete;
+    private float life_regen_factor_calculated;
 
     void Awake()
     {
@@ -77,11 +79,30 @@ public class PlayerController : MonoBehaviour
             powerInput = 1.0f;
         }
 
-        actual_speed += Time.deltaTime * speed_increade_per_delta_t;
+        if (actual_speed < speed_limit)
+        {
+            actual_speed += Time.deltaTime * speed_increade_per_delta_t;
+            if(actual_speed > speed_limit)
+            {
+                actual_speed = speed_limit;
+            }
+        }
+
         speed_multiplier_calculated = actual_speed / speed;
-        hover_engine.hoverMultiplier = Mathf.Sqrt(speed_multiplier_calculated);
-        scorer.multiplier = Mathf.Sqrt(speed_multiplier_calculated);
-        
+        float speed_mult_sqrt = Mathf.Sqrt(speed_multiplier_calculated);
+        hover_engine.hoverMultiplier = speed_mult_sqrt;
+        scorer.multiplier = speed_mult_sqrt;
+        life_regen_factor_calculated = Mathf.Sqrt(life_regen_factor * speed_mult_sqrt);
+
+        if (health < max_health)
+        {
+            health += life_regen_factor_calculated * Time.deltaTime;
+        }
+        else if(health > max_health)
+        {
+            health = max_health;
+        }
+
         //powerInput = Input.GetAxis("Vertical");
 
         turnInput = Input.GetAxis("Horizontal");
@@ -131,12 +152,15 @@ public class PlayerController : MonoBehaviour
         health_charge.Value = health / max_health * 100.0f;
 
         UpdateLivesText();
-
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         rigidbody.AddRelativeForce(turnInput * turnSpeed * speed_multiplier_calculated, 0f, powerInput * actual_speed);
     }
 
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.impulse.magnitude);
+    }
 }
