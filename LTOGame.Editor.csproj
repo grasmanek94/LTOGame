@@ -132,18 +132,30 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="LTOGame.Plugins.csproj">
+      <Project>{1390F63F-BAA4-D536-4129-F920A7B2C580}</Project>
+      <Name>LTOGame.Plugins</Name>
+    </ProjectReference>
     <ProjectReference Include="LTOGame.csproj">
       <Project>{87B97DC7-3DD0-7A7C-340A-5B82F846B5EB}</Project>
       <Name>LTOGame</Name>
     </ProjectReference>
+    <ProjectReference Include="LTOGame.Editor.Plugins.csproj">
+      <Project>{DA1FDCF4-381B-B3CC-F6AD-865258316FDC}</Project>
+      <Name>LTOGame.Editor.Plugins</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ToUseAssets\Standard Assets\Editor\CrossPlatformInput\CrossPlatformInputInitialize.cs" />
+    <Compile Include="Assets\LeanTouch\Editor\LeanSelectable_Editor.cs" />
+    <Compile Include="Assets\LeanTouch\Editor\LeanTouch_Editor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
-    <None Include="Assets\ToUseAssets\Standard Assets\Fonts\OpenSans\License!.txt" />
-    <None Include="Assets\ToUseAssets\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
+    <None Include="Assets\LeanTouch\Examples\Fonts\OFL.txt" />
+    <None Include="Assets\LeanTouch\Examples\Shaders\Skybox.shader" />
+    <None Include="Assets\LeanTouch\Examples\Shaders\Smooth.shader" />
+    <None Include="Assets\Standard Assets\Fonts\OpenSans\License!.txt" />
+    <None Include="Assets\Standard Assets\Prototyping\Shaders\WorldCoordDiffuse.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
