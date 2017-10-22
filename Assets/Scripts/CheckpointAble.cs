@@ -46,6 +46,16 @@ public class CheckpointAble : MonoBehaviour {
             Vector3 rot = offsets.rotation_offsets[0];
             rot.y += last_know_checkpoint.transform.eulerAngles.y;
 
+            // fix endpoint bugs
+            PrefabProperties props = last_know_checkpoint.GetComponent<PrefabProperties>();
+            switch (props.prefab)
+            {
+                case PrefabProperties.Prefab.RoadEndC:
+                case PrefabProperties.Prefab.RoadEndD:
+                    rot.y -= 180.0f;
+                    break;
+            }
+
             transform.rotation = Quaternion.Euler(rot);
             heading_rotator.SetForceDirection(rot.y);
             transform.position += transform.forward * 2.5f;
