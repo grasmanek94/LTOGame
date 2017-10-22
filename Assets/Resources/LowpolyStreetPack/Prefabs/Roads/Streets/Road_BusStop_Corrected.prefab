@@ -158,6 +158,13 @@ MonoBehaviour:
       - {x: -7.5, y: 2, z: 7}
       - {x: -7.5, y: 2, z: 0}
       - {x: -7.5, y: 2, z: -7}
+  - difficulty: 0
+    score_point_set:
+    - probability: 0.5
+      offsets:
+      - {x: 2.5, y: 2, z: 7}
+      - {x: -2.5, y: 2, z: 0}
+      - {x: 2.5, y: 2, z: -7}
 --- !u!114 &114830316084337672
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4418980392021656}
   - component: {fileID: 114663852179747270}
   - component: {fileID: 114596510753833938}
+  - component: {fileID: 114928350657491708}
   m_Layer: 0
   m_Name: Road_End_A_Corrected_180
   m_TagString: Untagged
@@ -155,3 +156,20 @@ MonoBehaviour:
   - {x: 0, y: 180, z: 0}
   taken:
   - {fileID: 0}
+--- !u!114 &114928350657491708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1664264364411710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score_points:
+  - difficulty: 3
+    score_point_set:
+    - probability: 0.3
+      offsets:
+      - {x: 0, y: 2, z: 0}

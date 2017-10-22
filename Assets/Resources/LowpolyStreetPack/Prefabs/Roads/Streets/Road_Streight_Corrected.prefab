@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4069652462951850}
   - component: {fileID: 114710360334847206}
   - component: {fileID: 114071316633924678}
+  - component: {fileID: 114104356282867148}
   m_Layer: 0
   m_Name: Road_Streight_Corrected
   m_TagString: Untagged
@@ -138,6 +139,111 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: 11
+--- !u!114 &114104356282867148
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944983886034790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score_points:
+  - difficulty: 1
+    score_point_set:
+    - probability: 0.01
+      offsets:
+      - {x: -4, y: 2, z: -12.5}
+      - {x: -2, y: 2, z: -10}
+      - {x: 0, y: 2, z: -7.5}
+      - {x: 2, y: 2, z: -5}
+      - {x: 4, y: 2, z: -2.5}
+      - {x: 4, y: 2, z: 0}
+      - {x: 4, y: 2, z: 2.5}
+      - {x: 2, y: 2, z: 5}
+      - {x: 0, y: 2, z: 7.5}
+      - {x: -2, y: 2, z: 10}
+      - {x: -4, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: 4, y: 2, z: -12.5}
+      - {x: 2, y: 2, z: -10}
+      - {x: 0, y: 2, z: -7.5}
+      - {x: -2, y: 2, z: -5}
+      - {x: -4, y: 2, z: -2.5}
+      - {x: -4, y: 2, z: 0}
+      - {x: -4, y: 2, z: 2.5}
+      - {x: -2, y: 2, z: 5}
+      - {x: 0, y: 2, z: 7.5}
+      - {x: 2, y: 2, z: 10}
+      - {x: 4, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: -4, y: 2, z: -12.5}
+      - {x: -3.2, y: 2, z: -10}
+      - {x: -2.4, y: 2, z: -7.5}
+      - {x: -1.6, y: 2, z: -5}
+      - {x: -0.8, y: 2, z: -2.5}
+      - {x: 0, y: 2, z: 0}
+      - {x: 0.8, y: 2, z: 2.5}
+      - {x: 1.6, y: 2, z: 5}
+      - {x: 2.4, y: 2, z: 7.5}
+      - {x: 3.2, y: 2, z: 10}
+      - {x: 4, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: 4, y: 2, z: -12.5}
+      - {x: 3.2, y: 2, z: -10}
+      - {x: 2.4, y: 2, z: -7.5}
+      - {x: 1.6, y: 2, z: -5}
+      - {x: 0.8, y: 2, z: -2.5}
+      - {x: 0, y: 2, z: 0}
+      - {x: -0.8, y: 2, z: 2.5}
+      - {x: -1.6, y: 2, z: 5}
+      - {x: -2.4, y: 2, z: 7.5}
+      - {x: -3.2, y: 2, z: 10}
+      - {x: -4, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: 0, y: 2, z: -12.5}
+      - {x: 0, y: 2, z: -10}
+      - {x: 0, y: 2, z: -7.5}
+      - {x: 0, y: 2, z: -5}
+      - {x: 0, y: 2, z: -2.5}
+      - {x: 0, y: 2, z: 0}
+      - {x: 0, y: 2, z: 2.5}
+      - {x: 0, y: 2, z: 5}
+      - {x: 0, y: 2, z: 7.5}
+      - {x: 0, y: 2, z: 10}
+      - {x: 0, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: 4, y: 2, z: -12.5}
+      - {x: 4, y: 2, z: -10}
+      - {x: 4, y: 2, z: -7.5}
+      - {x: 4, y: 2, z: -5}
+      - {x: 4, y: 2, z: -2.5}
+      - {x: 4, y: 2, z: 0}
+      - {x: 4, y: 2, z: 2.5}
+      - {x: 4, y: 2, z: 5}
+      - {x: 4, y: 2, z: 7.5}
+      - {x: 4, y: 2, z: 10}
+      - {x: 4, y: 2, z: 12.5}
+    - probability: 0.01
+      offsets:
+      - {x: -4, y: 2, z: -12.5}
+      - {x: -4, y: 2, z: -10}
+      - {x: -4, y: 2, z: -7.5}
+      - {x: -4, y: 2, z: -5}
+      - {x: -4, y: 2, z: -2.5}
+      - {x: -4, y: 2, z: 0}
+      - {x: -4, y: 2, z: 2.5}
+      - {x: -4, y: 2, z: 5}
+      - {x: -4, y: 2, z: 7.5}
+      - {x: -4, y: 2, z: 10}
+      - {x: -4, y: 2, z: 12.5}
 --- !u!114 &114710360334847206
 MonoBehaviour:
   m_ObjectHideFlags: 1

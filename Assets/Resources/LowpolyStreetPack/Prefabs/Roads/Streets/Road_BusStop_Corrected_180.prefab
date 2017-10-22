@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 4745769161757766}
   - component: {fileID: 114532507260977932}
   - component: {fileID: 114075840100738912}
+  - component: {fileID: 114523133250860586}
   m_Layer: 0
   m_Name: Road_BusStop_Corrected_180
   m_TagString: Untagged
@@ -138,6 +139,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefab: 15
+--- !u!114 &114523133250860586
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1513834164352554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score_points:
+  - difficulty: 3
+    score_point_set:
+    - probability: 0.33
+      offsets:
+      - {x: 7.5, y: 2, z: 7}
+      - {x: 7.5, y: 2, z: 0}
+      - {x: 7.5, y: 2, z: -7}
+  - difficulty: 0
+    score_point_set:
+    - probability: 0.5
+      offsets:
+      - {x: -2.5, y: 2, z: 7}
+      - {x: 2.5, y: 2, z: 0}
+      - {x: -2.5, y: 2, z: -7}
 --- !u!114 &114532507260977932
 MonoBehaviour:
   m_ObjectHideFlags: 1

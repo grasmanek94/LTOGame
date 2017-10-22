@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4657622350850460}
   - component: {fileID: 114682641214829818}
   - component: {fileID: 114753499355792128}
+  - component: {fileID: 114562459253090528}
   m_Layer: 0
   m_Name: Road_Cross_A_A_Corrected
   m_TagString: Untagged
@@ -126,6 +127,31 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: bca5c93adbc71744ca9ea932c796e900, type: 3}
+--- !u!114 &114562459253090528
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1419367167401730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score_points:
+  - difficulty: 1
+    score_point_set:
+    - probability: 0.5
+      offsets:
+      - {x: 0, y: 2, z: 0}
+  - difficulty: 2
+    score_point_set:
+    - probability: 0.4
+      offsets:
+      - {x: -6.75, y: 2, z: 6.75}
+      - {x: -6.75, y: 2, z: -6.75}
+      - {x: 6.75, y: 2, z: 6.75}
+      - {x: 6.75, y: 2, z: -6.75}
 --- !u!114 &114682641214829818
 MonoBehaviour:
   m_ObjectHideFlags: 1
