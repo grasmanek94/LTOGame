@@ -1700,6 +1700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 300
+  speed_limit: 750
   turnSpeed: 500
   seconds_stuck_lose_life: 0.5
   lives: 3
@@ -1708,7 +1709,8 @@ MonoBehaviour:
   lose_life_per_second_stuck: 666
   speed_increase_per_minute: 50
   life_regen_factor: 75
-  health_collision_factor: 0.33
+  health_collision_factor: 0.75
+  actual_speed: 0
   livesText: {fileID: 0}
   jump_recharge: {fileID: 114034747548062992}
   jump_charge_ui: {fileID: 0}

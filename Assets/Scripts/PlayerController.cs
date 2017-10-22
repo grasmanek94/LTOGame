@@ -17,12 +17,14 @@ public class PlayerController : MonoBehaviour
     public float lose_life_per_second_stuck = 666.0f;
     public float speed_increase_per_minute = 50.0f;
     public float life_regen_factor = 75.0f;
-    public float health_collision_factor = 0.33f;
+    public float health_collision_factor = 0.75f;
 
+    [SerializeField]
     private float actual_speed;
+
     private float powerInput;
     private float turnInput;
-    private float speed_increade_per_delta_t;
+    private float speed_increase_per_delta_t;
 
     public Text livesText;
 
@@ -62,7 +64,7 @@ public class PlayerController : MonoBehaviour
         powerInput = 0.0f;
         old_lives = -1;
         actual_speed = speed;
-        speed_increade_per_delta_t = speed_increase_per_minute / 60.0f;
+        speed_increase_per_delta_t = speed_increase_per_minute / 60.0f;
         awoken_time = Time.time;
         awoken_complete = false;
         is_touch_input = false;
@@ -107,7 +109,7 @@ public class PlayerController : MonoBehaviour
 
         if (actual_speed < speed_limit)
         {
-            actual_speed += Time.deltaTime * speed_increade_per_delta_t;
+            actual_speed += Time.deltaTime * speed_increase_per_delta_t;
             if(actual_speed > speed_limit)
             {
                 actual_speed = speed_limit;
@@ -172,7 +174,9 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        health -= collision.impulse.magnitude * health_collision_factor;
+        float mag = collision.impulse.magnitude;
+        health -= mag * health_collision_factor;
+        actual_speed -= Mathf.Sqrt(mag);
     }
 
     void ProcessControls()
