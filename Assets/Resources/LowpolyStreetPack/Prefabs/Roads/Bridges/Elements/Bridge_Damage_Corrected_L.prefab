@@ -279,8 +279,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   position_offsets:
-  - {x: 0, y: 0, z: -28.73}
-  - {x: 0, y: 0, z: 28.92}
+  - {x: 0, y: 0, z: -34.22}
+  - {x: 0, y: 0, z: 28.91}
   rotation_offsets:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}

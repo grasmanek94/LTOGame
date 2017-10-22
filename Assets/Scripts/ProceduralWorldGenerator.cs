@@ -12,6 +12,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
     private HoverEngine player_hover_engine;
 
+    private Dictionary<PrefabProperties.Prefab, GameObject> originals;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> inactive;
     private Dictionary<PrefabProperties.Prefab, List<GameObject>> active;
 
@@ -22,23 +23,22 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     private List<PrefabProperties.Prefab> random_pieces_normal_chance;
     private List<PrefabProperties.Prefab> random_pieces_low_chance;
 
-    void InstantiatePrefabs(string resource, int count)
+    void InstantiatePrefabs(PrefabProperties.Prefab which, int count)
     {
-        if(count < 1)
+        if (count < 1 || !originals.ContainsKey(which))
         {
             return;
         }
 
-        GameObject original = (GameObject)Resources.Load(resource);
-        PrefabProperties.Prefab which = original.GetComponent<PrefabProperties>().prefab;
-
+        GameObject original = originals[which];
+    
         if (!inactive.ContainsKey(which))
         {
             inactive.Add(which, new List<GameObject>());
             active.Add(which, new List<GameObject>());
         }
 
-        while (count --> 0)
+        while (count-- > 0)
         {
             GameObject game_object = Instantiate(original);
 
@@ -48,11 +48,32 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
     }
 
+    void InstantiatePrefabs(string resource, int count)
+    {
+        if(count < 1)
+        {
+            return;
+        }
+
+        GameObject original = (GameObject)Resources.Load(resource);
+        PrefabProperties.Prefab which = original.GetComponent<PrefabProperties>().prefab;
+        if (originals.ContainsKey(which))
+        {
+            original = originals[which];
+        }
+        else
+        {
+            originals.Add(which, original);
+        }
+
+        InstantiatePrefabs(which, count);
+    }
+
     GameObject Activate(PrefabProperties.Prefab which)
     {
         if(inactive[which].Count < 1)
         {
-            return null;
+            InstantiatePrefabs(which, 1);
         }
 
         GameObject game_object = inactive[which][0];
@@ -312,28 +333,31 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         inactive = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
+        originals = new Dictionary<PrefabProperties.Prefab, GameObject>();
 
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected_L", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_A_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_B_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected", 3);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected", 3);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected_180", 3);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected_180", 3);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 5);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 5);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected_L", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected_180", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_A_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_B_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected_180", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected_180", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 2);
 
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeDamage);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeStraight);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeSlopeUp);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeSlopeDown);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadBusStop);
+        random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadBusStopB);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadCrosswalk);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.RoadStraight);
 
