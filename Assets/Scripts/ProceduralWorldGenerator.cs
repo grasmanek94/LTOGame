@@ -171,7 +171,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         {
             return;
         }
-
         
         for (int i = 1; i < game_object_offsets.taken.Length; ++i) // generate max 4 pieces forward
         {
@@ -353,20 +352,8 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         GameObject next = Activate(PrefabProperties.Prefab.RoadStraight);
         ConnectFromFirstAvailable(start, next);
 
-        /*start = next;
-        next = Activate(PrefabProperties.Prefab.RoadCrossRight);
-        ConnectFromFirstAvailable(start, next);
-
-        start = next;
-        next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
-        ConnectFromFirstAvailable(start, next);
-
-        next = Activate(PrefabProperties.Prefab.BridgeSlopeUp);
-        ConnectFromFirstAvailable(start, next);*/
-
         player_hover_engine = follow_player.GetComponent<HoverEngine>();
     }
-
 
     // Update is called once per frame
     void Update ()
