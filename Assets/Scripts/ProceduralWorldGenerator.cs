@@ -9,6 +9,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
     public int low_chance_piece;
     public int low_chance_piece_randomness;
+    public int seed;
 
     private HoverEngine player_hover_engine;
 
@@ -22,6 +23,9 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     private System.Random random;
     private List<PrefabProperties.Prefab> random_pieces_normal_chance;
     private List<PrefabProperties.Prefab> random_pieces_low_chance;
+
+    private static Vector3 far_away_position = new Vector3(-200000000.0f, -200000000.0f, -200000000.0f);
+    private static Quaternion zero_quat = Quaternion.Euler(0.0f, 0.0f, 0.0f);
 
     void InstantiatePrefabs(PrefabProperties.Prefab which, int count)
     {
@@ -40,15 +44,17 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         while (count-- > 0)
         {
-            GameObject game_object = Instantiate(original);
+            GameObject game_object = Instantiate(original, far_away_position, zero_quat);
 
             game_object.SetActive(false);
+            ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
+            game_object_offsets.ResetTaken();
 
             inactive[which].Add(game_object);
         }
     }
 
-    void InstantiatePrefabs(string resource, int count)
+    void InstantiatePrefabs(string resource, int count = 5)
     {
         if(count < 1)
         {
@@ -83,7 +89,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         game_object.SetActive(true);
         ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
-        game_object.transform.SetPositionAndRotation(new Vector3(0.0f, 0.0f, 0.0f), Quaternion.Euler(0.0f, 0.0f, 0.0f));
+        game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
         game_object_offsets.ResetTaken();
 
         return game_object;
@@ -102,6 +108,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         inactive[which].Add(game_object);
 
         game_object.SetActive(false);
+        game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
         ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
         game_object_offsets.ResetTaken();
 
@@ -198,7 +205,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
             if(game_object_offsets.taken[i] == null)
             {
                 PrefabProperties.Prefab piece;
-                if (creation_tick % (low_chance_piece + (random.Next() % low_chance_piece_randomness)) == 0 || creation_tick > (low_chance_piece + low_chance_piece_randomness))
+                if (creation_tick > (low_chance_piece + (random.Next() % low_chance_piece_randomness)))
                 {
                     creation_tick = 1;
                     piece = random_pieces_low_chance[random.Next() % random_pieces_low_chance.Count];
@@ -209,7 +216,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                 }
 
                 if (game_object_offsets.taken.Length >= 3 && 
-                    (end_tick % (low_chance_piece/10 + (random.Next() % low_chance_piece_randomness/10)) == 0 || end_tick > (low_chance_piece/10 + low_chance_piece_randomness/10)))
+                    (end_tick > ((low_chance_piece/2) + (random.Next() % (low_chance_piece_randomness / 2)))))
                 {
                     if(end_tick % 2 == 0)
                     {
@@ -327,7 +334,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     // Use this for initialization
     void Start ()
     {
-        random = new System.Random(1337);
+        random = new System.Random(seed);
         random_pieces_normal_chance = new List<PrefabProperties.Prefab>();
         random_pieces_low_chance = new List<PrefabProperties.Prefab>();
 
@@ -335,22 +342,22 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         active = new Dictionary<PrefabProperties.Prefab, List<GameObject>>();
         originals = new Dictionary<PrefabProperties.Prefab, GameObject>();
 
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected_L", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected_180", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_A_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_B_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected_180", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected_180", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected", 2);
-        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected", 2);
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Damage_Corrected_L");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Simple_Straight_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Down_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Bridges/Elements/Bridge_Slope_Up_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_BusStop_Corrected_180");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_A_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Cross_A_B_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Crosswalk_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_A_Corrected_180");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_End_B_Corrected_180");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_A_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Streight_Corrected");
+        InstantiatePrefabs("LowpolyStreetPack/Prefabs/Roads/Streets/Road_Intersection_B_Corrected");
 
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeDamage);
         random_pieces_normal_chance.Add(PrefabProperties.Prefab.BridgeStraight);
