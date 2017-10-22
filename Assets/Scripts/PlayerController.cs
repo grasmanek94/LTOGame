@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -83,6 +84,12 @@ public class PlayerController : MonoBehaviour
             health = max_health;
             lives -= 1;
             seconds_stuck_last = hover_engine.seconds_stuck - seconds_stuck_lose_life;
+
+            if(lives == 0)
+            {
+                SharedObject.Set("score", scorer.score);
+                SceneManager.LoadScene(2); // game over scene
+            }
         }
         else if (hover_engine.seconds_stuck >= seconds_stuck_lose_life)
         {

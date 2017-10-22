@@ -85,6 +85,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Plugins\Easing.cs" />
+    <Compile Include="Assets\Plugins\SharedObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
