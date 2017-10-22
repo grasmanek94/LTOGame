@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 54143555115211806}
   - component: {fileID: 23194652708742968}
   - component: {fileID: 65775874288214796}
+  - component: {fileID: 114337987899993568}
   - component: {fileID: 114473543002835882}
   - component: {fileID: 114034747548062992}
   - component: {fileID: 114809486865258142}
@@ -1647,6 +1648,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jet_sound: {fileID: 82268883899882524}
+--- !u!114 &114337987899993568
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1520210415051762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2491f00c34090964298ae5944a21f20f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114405617933929786
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1689,11 +1701,12 @@ MonoBehaviour:
   speed: 300
   default_speed: 300
   turnSpeed: 500
-  seconds_stuck_lose_life: 0.33
+  seconds_stuck_lose_life: 0.5
   lives: 3
   health: 1000
   max_health: 1000
-  lose_life_per_second_stuck: 598
+  lose_life_per_second_stuck: 666
+  livesText: {fileID: 0}
   jump_recharge: {fileID: 114034747548062992}
   jump_charge_ui: {fileID: 0}
   health_charge_ui: {fileID: 0}

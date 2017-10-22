@@ -7,14 +7,16 @@ public class PlayerController : MonoBehaviour
     public float speed = 300f;
     public float default_speed = 300f;
     public float turnSpeed = 500f;
-    public float seconds_stuck_lose_life = 0.33f;
+    public float seconds_stuck_lose_life = 0.50f;
     public int lives = 3;
     public float health = 1000.0f;
     public float max_health = 1000.0f;
-    public float lose_life_per_second_stuck = 598.0f;
+    public float lose_life_per_second_stuck = 666.0f;
 
     private float powerInput;
     private float turnInput;
+
+    public Text livesText;
 
     public Rechargeable jump_recharge;
     public Image jump_charge_ui;
@@ -27,20 +29,32 @@ public class PlayerController : MonoBehaviour
     private HoverEngine hover_engine;
     private HeadingRotator heading_rotator;
     private Scorer scorer;
+    private CheckpointAble checkpointable;
 
     private float seconds_stuck_last;
-
+    private int old_lives = -1;
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
         hover_engine = GetComponent<HoverEngine>();
         heading_rotator = GetComponent<HeadingRotator>();
         scorer = GetComponent<Scorer>();
+        checkpointable = GetComponent<CheckpointAble>();
 
         jump_charge = jump_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
         health_charge = health_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
 
         powerInput = 1.0f;
+        old_lives = -1;
+    }
+
+    void UpdateLivesText()
+    {
+        if(old_lives != lives)
+        {
+            old_lives = lives;
+            livesText.text = lives.ToString() + " Lives";
+        }
     }
 
     void Update()
@@ -63,7 +77,14 @@ public class PlayerController : MonoBehaviour
             heading_rotator.Left();
         }
 
-        if(hover_engine.seconds_stuck >= seconds_stuck_lose_life)
+        if (health <= 0.0f)
+        {
+            checkpointable.Reset();
+            health = max_health;
+            lives -= 1;
+            seconds_stuck_last = hover_engine.seconds_stuck - seconds_stuck_lose_life;
+        }
+        else if (hover_engine.seconds_stuck >= seconds_stuck_lose_life)
         {
             // lose life
             float delta_s = hover_engine.seconds_stuck - seconds_stuck_lose_life;
@@ -78,6 +99,9 @@ public class PlayerController : MonoBehaviour
 
         jump_charge.Value = 100.0f * jump_recharge.percentage;
         health_charge.Value = health / max_health * 100.0f;
+
+        UpdateLivesText();
+
     }
 
     private void FixedUpdate()

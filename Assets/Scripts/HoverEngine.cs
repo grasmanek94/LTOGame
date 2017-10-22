@@ -107,8 +107,13 @@ public class HoverEngine : MonoBehaviour
         float delta = -0.33f;
         if (Physics.Raycast(transform.position, -Vector3.up, out hit))
         {
-            delta = Mathf.Clamp(hoverHeight - hit.distance, -hoverHeight, hoverHeight);
             below = hit.collider.gameObject.transform.root.gameObject;
+
+            //PrefabProperties prefab_properties = below.GetComponent<PrefabProperties>();
+            //if(prefab_properties != null)
+ 
+            delta = Mathf.Clamp(hoverHeight - hit.distance, -hoverHeight, hoverHeight);
+            
             if (is_stuck)
             {
                 is_stuck = false;
@@ -123,7 +128,6 @@ public class HoverEngine : MonoBehaviour
                 seconds_stuck_at = Time.time;
             }
             seconds_stuck = Time.time - seconds_stuck_at;
-            //Debug.Log(seconds_stuck);
         }
 
         Vector3 appliedHoverForce = Vector3.up * delta * hoverForce;

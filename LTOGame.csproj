@@ -104,6 +104,7 @@
     <Compile Include="Assets\ProgressBar\Script\ProgressBarBehaviour.cs" />
     <Compile Include="Assets\ProgressBar\Script\ProgressRadialBehaviour.cs" />
     <Compile Include="Assets\ProgressBar\Script\Utils.cs" />
+    <Compile Include="Assets\Scripts\CheckpointAble.cs" />
     <Compile Include="Assets\Scripts\ConnectionOffsets.cs" />
     <Compile Include="Assets\Scripts\HeadingRotator.cs" />
     <Compile Include="Assets\Scripts\HoverEngine.cs" />

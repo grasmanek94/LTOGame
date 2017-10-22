@@ -28,7 +28,7 @@ public class HeadingRotator : MonoBehaviour {
     void Awake ()
     {
         rigidbody = GetComponent<Rigidbody>();
-        lockY = ((int)(transform.eulerAngles.y / 90.0f)) * 90;
+        lockY = Mathf.Round(transform.eulerAngles.y / 90.0f) * 90.0f;
     }
 	
 	// Update is called once per frame
@@ -48,5 +48,10 @@ public class HeadingRotator : MonoBehaviour {
     public void Right()
     {
         StartCoroutine(RotateMe(Vector3.up * 90.0f, 0.1f));
+    }
+
+    public void SetForceDirection(float direction)
+    {
+        lockY = direction;
     }
 }
