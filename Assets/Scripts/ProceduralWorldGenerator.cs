@@ -194,8 +194,9 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
 
         ConnectionOffsets game_object_offsets = from.GetComponent<ConnectionOffsets>();
+        PrefabProperties game_object_prefabprops = from.GetComponent<PrefabProperties>();
 
-        if(game_object_offsets == null)
+        if (game_object_offsets == null)
         {
             return;
         }
@@ -205,9 +206,9 @@ public class ProceduralWorldGenerator : MonoBehaviour {
             if(game_object_offsets.taken[i] == null)
             {
                 PrefabProperties.Prefab piece;
-                if (creation_tick > (low_chance_piece + (random.Next() % low_chance_piece_randomness)))
+                if (!random_pieces_low_chance.Contains(game_object_prefabprops.prefab) && creation_tick > (low_chance_piece + (random.Next() % low_chance_piece_randomness)))
                 {
-                    creation_tick = 1;
+                    creation_tick = 0;
                     piece = random_pieces_low_chance[random.Next() % random_pieces_low_chance.Count];
                 }
                 else
