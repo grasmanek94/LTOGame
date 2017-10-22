@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
         actual_speed += Time.deltaTime * speed_increade_per_delta_t;
         speed_multiplier_calculated = actual_speed / speed;
-        hover_engine.hoverMultiplier = speed_multiplier_calculated;
+        hover_engine.hoverMultiplier = Mathf.Sqrt(speed_multiplier_calculated);
         scorer.multiplier = Mathf.Sqrt(speed_multiplier_calculated);
         
         //powerInput = Input.GetAxis("Vertical");

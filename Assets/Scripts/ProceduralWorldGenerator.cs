@@ -56,7 +56,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
     }
 
-    void InstantiatePrefabs(string resource, int count = 5)
+    void InstantiatePrefabs(string resource, int count = 1)
     {
         if(count < 1)
         {
@@ -131,6 +131,11 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         }
 
         GameObject from_inclusive = game_object_offsets.taken[0];
+
+        if(from_inclusive == null)
+        {
+            return;
+        }
 
         Dictionary<int, List<GameObject>> to_deactivate = new Dictionary<int, List<GameObject>>();
 
@@ -208,7 +213,12 @@ public class ProceduralWorldGenerator : MonoBehaviour {
             if(game_object_offsets.taken[i] == null)
             {
                 PrefabProperties.Prefab piece;
-                if (!random_pieces_low_chance.Contains(game_object_prefabprops.prefab) && creation_tick > (low_chance_piece + (random.Next() % low_chance_piece_randomness)))
+                bool place_low_chance_piece =
+                    !random_pieces_low_chance.Contains(game_object_prefabprops.prefab) &&
+                    (game_object_offsets.taken[0] == null || !random_pieces_low_chance.Contains(game_object_offsets.taken[0].GetComponent<PrefabProperties>().prefab)) &&
+                    creation_tick > (low_chance_piece + (random.Next() % low_chance_piece_randomness));
+
+                if (place_low_chance_piece)
                 {
                     creation_tick = 0;
                     piece = random_pieces_low_chance[random.Next() % random_pieces_low_chance.Count];
@@ -219,7 +229,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                 }
 
                 if (game_object_offsets.taken.Length >= 3 && 
-                    (end_tick > ((low_chance_piece/2) + (random.Next() % (low_chance_piece_randomness / 2)))))
+                    ((end_tick / 2) > (low_chance_piece + (random.Next() % low_chance_piece_randomness))))
                 {
                     if(end_tick % 2 == 0)
                     {
@@ -229,7 +239,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                     {
                         ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndD), 1);
                     }
-                    end_tick = 1;
+                    end_tick = 0;
                 }
                 else
                 {
