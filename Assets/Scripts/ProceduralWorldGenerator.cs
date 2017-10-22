@@ -44,7 +44,9 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         while (count-- > 0)
         {
-            GameObject game_object = Instantiate(original, far_away_position, zero_quat);
+            GameObject game_object = Instantiate(original
+                //, far_away_position, zero_quat
+            );
 
             game_object.SetActive(false);
             ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
@@ -89,7 +91,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         game_object.SetActive(true);
         ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
-        game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
+        //game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
         game_object_offsets.ResetTaken();
 
         return game_object;
@@ -108,7 +110,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         inactive[which].Add(game_object);
 
         game_object.SetActive(false);
-        game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
+        //game_object.transform.SetPositionAndRotation(far_away_position, zero_quat);
         ConnectionOffsets game_object_offsets = game_object.GetComponent<ConnectionOffsets>();
         game_object_offsets.ResetTaken();
 
@@ -221,18 +223,18 @@ public class ProceduralWorldGenerator : MonoBehaviour {
                 {
                     if(end_tick % 2 == 0)
                     {
-                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndC));
+                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndC), 1);
                     }
                     else
                     {
-                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndD));
+                        ConnectFromFirstAvailable(from, Activate(PrefabProperties.Prefab.RoadEndD), 1);
                     }
                     end_tick = 1;
                 }
                 else
                 {
                     ++end_tick;
-                    ConnectFromFirstAvailable(from, Activate(piece));
+                    ConnectFromFirstAvailable(from, Activate(piece), 1);
                 }
             }
 

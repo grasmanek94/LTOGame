@@ -17,7 +17,7 @@ public class ConnectionOffsets : MonoBehaviour
             ConnectionOffsets other = other_go.GetComponent<ConnectionOffsets>();
             for (int j = 0; j < other.taken.Length; ++j)
             {
-                if (other.taken[j] == this)
+                if (other.taken[j] == transform.gameObject)
                 {
                     other.taken[j] = null;
                     break;
