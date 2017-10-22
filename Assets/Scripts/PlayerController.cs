@@ -7,10 +7,11 @@ public class PlayerController : MonoBehaviour
     public float speed = 300f;
     public float default_speed = 300f;
     public float turnSpeed = 500f;
-    public float seconds_stuck_lose_life = 1.0f;
+    public float seconds_stuck_lose_life = 0.33f;
     public int lives = 3;
     public float health = 1000.0f;
     public float max_health = 1000.0f;
+    public float lose_life_per_second_stuck = 598.0f;
 
     private float powerInput;
     private float turnInput;
@@ -28,7 +29,6 @@ public class PlayerController : MonoBehaviour
     private Scorer scorer;
 
     private float seconds_stuck_last;
-    public float lose_life_per_second_stuck = 333.0f;
 
     void Awake()
     {
@@ -63,11 +63,12 @@ public class PlayerController : MonoBehaviour
             heading_rotator.Left();
         }
 
-        if(hover_engine.seconds_stuck > 0.0f)
+        if(hover_engine.seconds_stuck >= seconds_stuck_lose_life)
         {
             // lose life
-            float delta_t = hover_engine.seconds_stuck - seconds_stuck_last;
-            seconds_stuck_last = hover_engine.seconds_stuck;
+            float delta_s = hover_engine.seconds_stuck - seconds_stuck_lose_life;
+            float delta_t = delta_s - seconds_stuck_last;
+            seconds_stuck_last = delta_s;
             health -= delta_t * lose_life_per_second_stuck;
         }
         else
