@@ -2,6 +2,8 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Lean.Touch;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -44,6 +46,8 @@ public class PlayerController : MonoBehaviour
     private bool awoken_complete;
     private float life_regen_factor_calculated;
 
+    private bool is_touch_input;
+    private float current_accelerometer_x;
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -61,6 +65,8 @@ public class PlayerController : MonoBehaviour
         speed_increade_per_delta_t = speed_increase_per_minute / 60.0f;
         awoken_time = Time.time;
         awoken_complete = false;
+        is_touch_input = false;
+        current_accelerometer_x = Input.acceleration.x;
     }
 
     void UpdateLivesText()
@@ -72,9 +78,28 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Jump()
+    {
+        hover_engine.jumpMultiplier = jump_recharge.UseCharge();
+        hover_engine.Jump();
+    }
+
+    void Left()
+    {
+        heading_rotator.Left();
+    }
+
+    void Right()
+    {
+        heading_rotator.Right();
+    }
+
     void Update()
     {
-        if(!awoken_complete && Time.time - awoken_time > 1.0f)
+        //powerInput = Input.GetAxis("Vertical");
+        ProcessControls();
+
+        if (!awoken_complete && Time.time - awoken_time > 1.0f)
         {
             awoken_complete = true;
             powerInput = 1.0f;
@@ -102,24 +127,6 @@ public class PlayerController : MonoBehaviour
         else if(health > max_health)
         {
             health = max_health;
-        }
-
-        //powerInput = Input.GetAxis("Vertical");
-
-        turnInput = Input.GetAxis("Horizontal");
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            hover_engine.jumpMultiplier = jump_recharge.UseCharge();
-            hover_engine.Jump();
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            heading_rotator.Right();
-        }
-        if (Input.GetKeyDown("q"))
-        {
-            heading_rotator.Left();
         }
 
         if (health <= 0.0f)
@@ -166,5 +173,81 @@ public class PlayerController : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         health -= collision.impulse.magnitude * health_collision_factor;
+    }
+
+    void ProcessControls()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            Right();
+        }
+        if (Input.GetKeyDown("q"))
+        {
+            Left();
+        }
+
+        float iax = Input.acceleration.x;
+        if (current_accelerometer_x != iax)
+        {
+            is_touch_input = true;
+        }
+
+        if (!is_touch_input)
+        {
+            turnInput = Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            turnInput = Input.acceleration.x * 1.3f;
+        }
+    }
+
+    void OnFingerTap(LeanFinger finger)
+    {
+        Jump();
+    }
+
+    void OnEnable()
+    {
+        // Hook into the events we need
+        LeanTouch.OnFingerSwipe += OnFingerSwipe;
+        LeanTouch.OnFingerTap += OnFingerTap;
+    }
+
+    void OnDisable()
+    {
+        // Unhook the events
+        LeanTouch.OnFingerSwipe -= OnFingerSwipe;
+        LeanTouch.OnFingerTap -= OnFingerTap;
+    }
+
+    public void OnFingerSwipe(LeanFinger finger)
+    {
+        // Store the swipe delta in a temp variable
+        var swipe = finger.SwipeScreenDelta;
+
+        if (swipe.x < -Mathf.Abs(swipe.y))
+        {
+            Left();
+        }
+
+        if (swipe.x > Mathf.Abs(swipe.y))
+        {
+            Right();
+        }
+
+        if (swipe.y < -Mathf.Abs(swipe.x))
+        {
+            //InfoText.text = "You swiped down!";
+        }
+
+        if (swipe.y > Mathf.Abs(swipe.x))
+        {
+            //InfoText.text = "You swiped up!";
+        }
     }
 }
