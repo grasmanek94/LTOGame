@@ -138,7 +138,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3a19d010b2c144e9fbeb4451e94256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  score_points: []
+  score_points:
+  - difficulty: 0
+    score_point_set:
+    - probability: 0.05
+      offsets:
+      - {x: -4, y: 2, z: -28}
+      - {x: -4, y: 2, z: -21}
+      - {x: -4, y: 2, z: -14}
+      - {x: -4, y: 2, z: -7}
+      - {x: -4, y: 2, z: 0}
+      - {x: -4, y: 2, z: 7}
+      - {x: -4, y: 2, z: 14}
+      - {x: -4, y: 2, z: 21}
+      - {x: -4, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: 0, y: 2, z: -28}
+      - {x: 0, y: 2, z: -21}
+      - {x: 0, y: 2, z: -14}
+      - {x: 0, y: 2, z: -7}
+      - {x: 0, y: 2, z: 0}
+      - {x: 0, y: 2, z: 7}
+      - {x: 0, y: 2, z: 14}
+      - {x: 0, y: 2, z: 21}
+      - {x: 0, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: 4, y: 2, z: -28}
+      - {x: 4, y: 2, z: -21}
+      - {x: 4, y: 2, z: -14}
+      - {x: 4, y: 2, z: -7}
+      - {x: 4, y: 2, z: 0}
+      - {x: 4, y: 2, z: 7}
+      - {x: 4, y: 2, z: 14}
+      - {x: 4, y: 2, z: 21}
+      - {x: 4, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: -4, y: 2, z: -28}
+      - {x: -3, y: 2, z: -21}
+      - {x: -2, y: 2, z: -14}
+      - {x: -1, y: 2, z: -7}
+      - {x: 0, y: 2, z: 0}
+      - {x: 1, y: 2, z: 7}
+      - {x: 2, y: 2, z: 14}
+      - {x: 3, y: 2, z: 21}
+      - {x: 4, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: 4, y: 2, z: -28}
+      - {x: 3, y: 2, z: -21}
+      - {x: 2, y: 2, z: -14}
+      - {x: 1, y: 2, z: -7}
+      - {x: 0, y: 2, z: 0}
+      - {x: -1, y: 2, z: 7}
+      - {x: -2, y: 2, z: 14}
+      - {x: -3, y: 2, z: 21}
+      - {x: -4, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: 4, y: 2, z: -28}
+      - {x: 3, y: 2, z: -21}
+      - {x: 2, y: 2, z: -14}
+      - {x: 1, y: 2, z: -7}
+      - {x: 0, y: 2, z: 0}
+      - {x: 1, y: 2, z: 7}
+      - {x: 2, y: 2, z: 14}
+      - {x: 3, y: 2, z: 21}
+      - {x: 4, y: 2, z: 28}
+    - probability: 0.05
+      offsets:
+      - {x: -4, y: 2, z: -28}
+      - {x: -3, y: 2, z: -21}
+      - {x: -2, y: 2, z: -14}
+      - {x: -1, y: 2, z: -7}
+      - {x: 0, y: 2, z: 0}
+      - {x: -1, y: 2, z: 7}
+      - {x: -2, y: 2, z: 14}
+      - {x: -3, y: 2, z: 21}
+      - {x: -4, y: 2, z: 28}
 --- !u!114 &114538201947086212
 MonoBehaviour:
   m_ObjectHideFlags: 1
