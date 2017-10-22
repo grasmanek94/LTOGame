@@ -13,9 +13,12 @@ public class PlayerController : MonoBehaviour
     public float health = 1000.0f;
     public float max_health = 1000.0f;
     public float lose_life_per_second_stuck = 666.0f;
+    public float speed_increase_per_minute = 50.0f;
 
+    private float actual_speed;
     private float powerInput;
     private float turnInput;
+    private float speed_increade_per_delta_t;
 
     public Text livesText;
 
@@ -34,6 +37,8 @@ public class PlayerController : MonoBehaviour
 
     private float seconds_stuck_last;
     private int old_lives = -1;
+    private float speed_multiplier_calculated;
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -47,6 +52,8 @@ public class PlayerController : MonoBehaviour
 
         powerInput = 1.0f;
         old_lives = -1;
+        actual_speed = speed;
+        speed_increade_per_delta_t = speed_increase_per_minute / 60.0f;
     }
 
     void UpdateLivesText()
@@ -60,13 +67,17 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        powerInput = Input.GetAxis("Vertical");
+        actual_speed += Time.deltaTime * speed_increade_per_delta_t;
+        speed_multiplier_calculated = actual_speed / speed;
+        scorer.multiplier = Mathf.Sqrt(speed_multiplier_calculated);
+        
+        //powerInput = Input.GetAxis("Vertical");
 
         turnInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            hover_engine.jumpMultiplier = jump_recharge.UseCharge();
+            hover_engine.jumpMultiplier = jump_recharge.UseCharge() * speed_multiplier_calculated;
             hover_engine.Jump();
         }
         if (Input.GetKeyDown("e"))
@@ -84,6 +95,7 @@ public class PlayerController : MonoBehaviour
             health = max_health;
             lives -= 1;
             seconds_stuck_last = hover_engine.seconds_stuck - seconds_stuck_lose_life;
+            actual_speed = speed;
 
             if(lives == 0)
             {
@@ -113,7 +125,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rigidbody.AddRelativeForce(turnInput * turnSpeed, 0f, powerInput * speed);
+        rigidbody.AddRelativeForce(turnInput * turnSpeed * speed_multiplier_calculated, 0f, powerInput * actual_speed);
     }
 
 }
