@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 300f;
-    private float speed_limit = 750.0f;
+    public float speed_limit = 750.0f;
     public float turnSpeed = 500f;
     public float seconds_stuck_lose_life = 0.50f;
     public int lives = 3;
@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public float max_health = 1000.0f;
     public float lose_life_per_second_stuck = 666.0f;
     public float speed_increase_per_minute = 50.0f;
-    public float life_regen_factor = 1000.0f;
+    public float life_regen_factor = 75.0f;
+    public float health_collision_factor = 0.33f;
 
     private float actual_speed;
     private float powerInput;
@@ -161,6 +162,6 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.impulse.magnitude);
+        health -= collision.impulse.magnitude * health_collision_factor;
     }
 }
