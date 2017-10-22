@@ -27,6 +27,9 @@ public class PlayerController : MonoBehaviour
     private HeadingRotator heading_rotator;
     private Scorer scorer;
 
+    private float seconds_stuck_last;
+    public float lose_life_per_second_stuck = 333.0f;
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -60,10 +63,16 @@ public class PlayerController : MonoBehaviour
             heading_rotator.Left();
         }
 
-        if(hover_engine.seconds_stuck >= seconds_stuck_lose_life)
+        if(hover_engine.seconds_stuck > 0.0f)
         {
             // lose life
-
+            float delta_t = hover_engine.seconds_stuck - seconds_stuck_last;
+            seconds_stuck_last = hover_engine.seconds_stuck;
+            health -= delta_t * lose_life_per_second_stuck;
+        }
+        else
+        {
+            seconds_stuck_last = 0.0f;
         }
 
         jump_charge.Value = 100.0f * jump_recharge.percentage;
