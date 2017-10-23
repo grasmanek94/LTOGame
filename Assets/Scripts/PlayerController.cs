@@ -181,6 +181,11 @@ public class PlayerController : MonoBehaviour
 
     void ProcessControls()
     {
+        if(!awoken_complete)
+        {
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Jump();
@@ -212,6 +217,11 @@ public class PlayerController : MonoBehaviour
 
     void OnFingerTap(LeanFinger finger)
     {
+        if (!awoken_complete)
+        {
+            return;
+        }
+
         Jump();
     }
 
@@ -231,6 +241,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnFingerSwipe(LeanFinger finger)
     {
+        if (!awoken_complete)
+        {
+            return;
+        }
+
         // Store the swipe delta in a temp variable
         var swipe = finger.SwipeScreenDelta;
 

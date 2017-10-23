@@ -117,7 +117,7 @@ public class ProceduralWorldGenerator : MonoBehaviour {
         return true;
     }
 
-    void DeactivateChainBackwards(GameObject from_exclusive)
+    void DeactivateChainBackwards(GameObject from_exclusive, bool two_behind = true)
     {
         if(from_exclusive == null)
         {
@@ -132,10 +132,18 @@ public class ProceduralWorldGenerator : MonoBehaviour {
 
         GameObject from_inclusive = game_object_offsets.taken[0];
 
-        if(from_inclusive == null)
+        if (from_inclusive == null)
         {
             return;
         }
+
+        // skip even one more backwards so player doesn't "see" it behind him      
+        if(two_behind)
+        {
+            DeactivateChainBackwards(from_inclusive, false);
+            return;
+        }
+        //
 
         Dictionary<int, List<GameObject>> to_deactivate = new Dictionary<int, List<GameObject>>();
 
