@@ -1660,6 +1660,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d317a3e8ecc8c5344a744f844f8f9307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  low_speed_warning_threshold_percentage: 0.85
+  low_speed_critical_threshold_percentage: 0.78
+  low_speed_die_threshold_percentage: 0.71
+  max_seconds_below_die_threshold: 5
+  flashing_warning_image: {fileID: 0}
+  flashing_critical_image: {fileID: 0}
 --- !u!114 &114337987899993568
 MonoBehaviour:
   m_ObjectHideFlags: 1

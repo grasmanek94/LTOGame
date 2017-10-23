@@ -25,6 +25,9 @@ public class SpeedWarningIndicator : MonoBehaviour {
 
     private FlashState state;
     private float time_below_die_threshold;
+    private float dying_percentage;
+    private bool enlarging;
+
     // Use this for initialization
     void Awake ()
     {
@@ -32,7 +35,20 @@ public class SpeedWarningIndicator : MonoBehaviour {
         state = FlashState.NONE;
         EnableImagesByState();
     }
-	
+
+    IEnumerator SmoothFullScale(GameObject image, float inTime)
+    {
+        float begin = image.transform.localScale.x;
+        for (var t = 0f; t <= 2.0f; t += Time.deltaTime / inTime)
+        {
+            float scale_value = Mathf.Lerp(begin, 1.0f, Mathf.Min(t, 1.0f));
+            image.transform.localScale = new Vector3(scale_value, scale_value, 1.0f);
+            yield return null;
+        }
+        image.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        enlarging = false;
+    }
+
     void EnableImagesByState()
     {
         switch(state)
@@ -58,15 +74,25 @@ public class SpeedWarningIndicator : MonoBehaviour {
 
     void UpdateStateImages()
     {
+        float flashval = Mathf.Abs(Mathf.Sin(Time.time * 3.0f));
         switch (state)
         {
             case FlashState.WARNING:
-                flashing_warning_image.transform.localScale = new Vector3(Mathf.Sin(Time.time), Mathf.Sin(Time.time), 1.0f);
+                flashing_warning_image.transform.localScale = new Vector3(flashval, flashval, 1.0f);
                 break;
 
             case FlashState.CRITICAL:
+                flashing_critical_image.transform.localScale = new Vector3(flashval, flashval, 1.0f);
+                flashing_critical_image.fillAmount = 1.0f;
+                break;
+
             case FlashState.DEAD:
-                flashing_critical_image.transform.localScale = new Vector3(Mathf.Sin(Time.time), Mathf.Sin(Time.time), 1.0f);
+                if (!enlarging)
+                {
+                    enlarging = true;
+                    StartCoroutine(SmoothFullScale(flashing_critical_image.gameObject, 0.25f));
+                }
+                flashing_critical_image.fillAmount = 1.0f - dying_percentage;
                 break;
         }
     }
@@ -77,6 +103,7 @@ public class SpeedWarningIndicator : MonoBehaviour {
         if (controller.GetSpeedPercentage() >= 1.0f)
         {
             state = FlashState.NONE;
+            EnableImagesByState();
         }
 
         UpdateStateImages();
@@ -95,7 +122,14 @@ public class SpeedWarningIndicator : MonoBehaviour {
                 EnableImagesByState();
             }
 
-            if (Time.time - time_below_die_threshold > max_seconds_below_die_threshold)
+            float time_dying = Time.time - time_below_die_threshold;
+            dying_percentage = time_dying / max_seconds_below_die_threshold;
+            if(dying_percentage > 1.0f)
+            {
+                dying_percentage = 1.0f;
+            }
+
+            if (time_dying > max_seconds_below_die_threshold)
             {
                 controller.health = -controller.max_health;
                 state = FlashState.DONE;
