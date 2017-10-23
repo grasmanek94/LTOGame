@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public float speed_increase_per_minute = 50.0f;
     public float life_regen_factor = 75.0f;
     public float health_collision_factor = 0.75f;
-
+    
     [SerializeField]
     private float actual_speed;
 
@@ -268,5 +268,15 @@ public class PlayerController : MonoBehaviour
         {
             //InfoText.text = "You swiped up!";
         }
+    }
+
+    public float GetActualSpeed()
+    {
+        return actual_speed;
+    }
+
+    public float GetSpeedPercentage()
+    {
+        return speed_multiplier_calculated;
     }
 }
