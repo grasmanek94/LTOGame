@@ -152,6 +152,7 @@
     <Compile Include="Assets\Scripts\ConnectionOffsets.cs" />
     <Compile Include="Assets\Scripts\GameOverScoreDisplay.cs" />
     <Compile Include="Assets\Scripts\HeadingRotator.cs" />
+    <Compile Include="Assets\Scripts\HealthController.cs" />
     <Compile Include="Assets\Scripts\HoverEngine.cs" />
     <Compile Include="Assets\Scripts\LoadSceneOnClick.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

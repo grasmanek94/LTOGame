@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class SpeedWarningIndicator : MonoBehaviour {
 
     private PlayerController controller;
+    private HealthController health;
+
     public float low_speed_warning_threshold_percentage;
     public float low_speed_critical_threshold_percentage;
     public float low_speed_die_threshold_percentage;
@@ -32,6 +34,8 @@ public class SpeedWarningIndicator : MonoBehaviour {
     void Awake ()
     {
         controller = GetComponent<PlayerController>();
+        health = GetComponent<HealthController>();
+
         state = FlashState.NONE;
         EnableImagesByState();
     }
@@ -131,7 +135,7 @@ public class SpeedWarningIndicator : MonoBehaviour {
 
             if (time_dying > max_seconds_below_die_threshold)
             {
-                controller.health = -controller.max_health;
+                health.health = -health.max_health;
                 state = FlashState.DONE;
                 EnableImagesByState();
             }

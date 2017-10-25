@@ -812,6 +812,20 @@ Prefab:
       propertyPath: flashing_critical_image
       value: 
       objectReference: {fileID: 1942811895}
+    - target: {fileID: 114983876153481998, guid: 1046ec4c9ca0ef84984e0106900d1646,
+        type: 2}
+      propertyPath: livesText
+      value: 
+      objectReference: {fileID: 2006054086}
+    - target: {fileID: 114983876153481998, guid: 1046ec4c9ca0ef84984e0106900d1646,
+        type: 2}
+      propertyPath: health_charge_ui
+      value: 
+      objectReference: {fileID: 108294393}
+    - target: {fileID: 4750177166450342, guid: 1046ec4c9ca0ef84984e0106900d1646, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1046ec4c9ca0ef84984e0106900d1646, type: 2}
   m_IsPrefabParent: 0
