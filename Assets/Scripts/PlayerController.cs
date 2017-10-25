@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
     public float speed = 300f;
     public float speed_limit = 750.0f;
     public float turnSpeed = 500f;
-
     public float speed_increase_per_minute = 50.0f;
     
     [SerializeField]
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private HeadingRotator heading_rotator;
     private Scorer scorer;
     private CheckpointAble checkpointable;
+    private PlayerSoundController sound;
 
     private float speed_multiplier_calculated;
     private float awoken_time;
@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
         heading_rotator = GetComponent<HeadingRotator>();
         scorer = GetComponent<Scorer>();
         checkpointable = GetComponent<CheckpointAble>();
+        sound = GetComponent<PlayerSoundController>();
 
         jump_charge = jump_charge_ui.GetComponent<ProgressBar.ProgressRadialBehaviour>();
 
@@ -63,13 +64,13 @@ public class PlayerController : MonoBehaviour
         powerInput = 0.0f;
         checkpointable.Reset();
         actual_speed = speed;
-
     }
 
     void Jump()
     {
         hover_engine.jumpMultiplier = jump_recharge.UseCharge();
         hover_engine.Jump();
+        sound.Jump(hover_engine.jumpMultiplier);
     }
 
     void Left()
