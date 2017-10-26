@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\PlayerSoundController.cs" />
     <Compile Include="Assets\Scripts\PrefabProperties.cs" />
     <Compile Include="Assets\Scripts\ProceduralWorldGenerator.cs" />
+    <Compile Include="Assets\Scripts\PropManager.cs" />
     <Compile Include="Assets\Scripts\RandomStateExtension.cs" />
     <Compile Include="Assets\Scripts\Rechargeable.cs" />
     <Compile Include="Assets\Scripts\Rotator.cs" />

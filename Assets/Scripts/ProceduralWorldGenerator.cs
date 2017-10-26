@@ -7,9 +7,10 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     
     public GameObject follow_player;
 
-    public int low_chance_piece;
-    public int low_chance_piece_randomness;
-    public int seed;
+    public int low_chance_piece = 3;
+    public int low_chance_piece_randomness = 2;
+    public int seed = 42;
+    public int nesting_level = 8;
 
     private HoverEngine player_hover_engine;
 
@@ -411,6 +412,6 @@ public class ProceduralWorldGenerator : MonoBehaviour {
     void Update ()
     {
         DeactivateChainBackwards(player_hover_engine.below);
-        GenerateForward(player_hover_engine.below, 4);
+        GenerateForward(player_hover_engine.below, nesting_level);
     }
 }
