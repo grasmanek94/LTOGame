@@ -6,6 +6,7 @@ public class PlayerSoundController : MonoBehaviour
 
     public AudioSource jet_sound;
     public AudioSource jump_sound;
+    public AudioSource coin_sound;
 
     [System.Serializable]
     public class CollisionPair
@@ -21,9 +22,11 @@ public class PlayerSoundController : MonoBehaviour
     private const float HighPitch = 2.0f;
     private const float SpeedToRevs = .01f;
     private Rigidbody rigidbody;
+    private float last_coin_pickup;
 
     void Awake()
     {
+        last_coin_pickup = Time.time;
         rigidbody = GetComponent<Rigidbody>();
     }
 
@@ -57,5 +60,14 @@ public class PlayerSoundController : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Coin(float score)
+    {
+        float delta = Time.time - last_coin_pickup;
+        last_coin_pickup = Time.time;
+
+        coin_sound.pitch = 0.95f + (2.0f / last_coin_pickup) + (score / 100.0f);
+        coin_sound.Play();
     }
 }

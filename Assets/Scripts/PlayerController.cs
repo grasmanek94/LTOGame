@@ -233,6 +233,5 @@ public class PlayerController : MonoBehaviour
         float mag = collision.impulse.magnitude;
         sound.Impact(mag);
         actual_speed -= Mathf.Sqrt(mag);
-        Debug.Log(mag);
     }
 }

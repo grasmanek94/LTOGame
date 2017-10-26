@@ -14,12 +14,14 @@ public class Scorer : MonoBehaviour {
     public float multiplier = 1.0f;
     private float old_score;
     public Text scoreText;
+    private PlayerSoundController sound;
 
     // Use this for initialization
     void Awake ()
     {
         score = 0.0f;
         old_score = 0.0f;
+        sound = GetComponent<PlayerSoundController>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,9 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Trigger)
         {
-            score += (scoreable.TriggerScore * multiplier);
+            float add_score = scoreable.TriggerScore * multiplier;
+            score += add_score;
+            sound.Coin(add_score);
         }
     }
 
@@ -49,7 +53,9 @@ public class Scorer : MonoBehaviour {
         Scoreable scoreable = other.gameObject.GetComponent<Scoreable>();
         if (scoreable != null && scoreable.Collision)
         {
-            score += (scoreable.CollisionScore * multiplier);
+            float add_score = scoreable.CollisionScore * multiplier;
+            score += add_score;
+            sound.Coin(add_score);
         }
     }
 }
