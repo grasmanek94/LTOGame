@@ -5,7 +5,6 @@ using UnityEngine;
 public class PropPlacer : MonoBehaviour {
 
     [System.Serializable]
-
     public class SimpleTransform
     {
         public Vector3 position;
