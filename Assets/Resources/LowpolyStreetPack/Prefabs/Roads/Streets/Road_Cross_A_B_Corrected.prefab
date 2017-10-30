@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114830905055053150}
   - component: {fileID: 114256321496773190}
   - component: {fileID: 114518561344837970}
+  - component: {fileID: 114702784391624694}
   m_Layer: 0
   m_Name: Road_Cross_A_B_Corrected
   m_TagString: Untagged
@@ -164,6 +165,19 @@ MonoBehaviour:
       - {x: -5, y: 2, z: 5}
       - {x: 5, y: 2, z: -5}
       - {x: 5, y: 2, z: 5}
+--- !u!114 &114702784391624694
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1618965676023906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points: []
+  block_points: []
 --- !u!114 &114830905055053150
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -37,6 +37,8 @@ public class PlayerController : MonoBehaviour
     private float current_accelerometer_x;
     private float speed_mult_sqrt;
 
+    public bool player_speed_control = false;
+
     void Awake()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -85,7 +87,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //powerInput = Input.GetAxis("Vertical");
+        if (player_speed_control)
+        {
+            powerInput = Input.GetAxis("Vertical");
+        }
         ProcessControls();
 
         if (!awoken_complete && Time.time - awoken_time > 1.0f)

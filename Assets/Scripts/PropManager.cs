@@ -94,49 +94,52 @@ public class PropManager : MonoBehaviour {
         }
     }
 
-    private static PropManager instance = null;
+    private static bool initialised = false;
     private static InstanceManager<PropType> props;
     private static InstanceManager<BlockType> blocks;
 
     public static GameObject GetRandomProp()
     {
+        Init();
         return props.GetRandom();
     }
 
     public static void ReturnProp(GameObject game_object)
     {
+        Init();
         props.Return(game_object);
-        game_object.transform.parent = instance.transform;
+        //game_object.transform.parent = instance.transform;
     }
 
     public static GameObject GetRandomBlock()
     {
+        Init();
         return blocks.GetRandom();
     }
 
     public static void ReturnBlock(GameObject game_object)
     {
+        Init();
         blocks.Return(game_object);
-        game_object.transform.parent = instance.transform;
+        //game_object.transform.parent = instance.transform;
     }
 
-    private void Awake()
-    {        
-        if(instance == null)
+    private static void Init()
+    {
+        if (!initialised)
         {
-            instance = this;
-
+            initialised = true;
             props = new InstanceManager<PropType>();
 
-            props.Instantiate(PropType.Bench_A       , "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_A"                      );
-            props.Instantiate(PropType.Bench_B       , "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_B"                      );
-            props.Instantiate(PropType.Bench_C       , "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_C"                      );
-            props.Instantiate(PropType.FuseBox       , "LowpolyStreetPack/Prefabs/StreetProps/FuseBox/FuseBox"                    );
-            props.Instantiate(PropType.Hidrant       , "LowpolyStreetPack/Prefabs/StreetProps/Hidrant/Hidrant"                    );
-            props.Instantiate(PropType.MailBox       , "LowpolyStreetPack/Prefabs/StreetProps/MailBox/MailBox"                    );
-            props.Instantiate(PropType.NewsBoard     , "LowpolyStreetPack/Prefabs/StreetProps/NewsBoard/NewsBoard"                );
-            props.Instantiate(PropType.ParkLamp      , "LowpolyStreetPack/Prefabs/StreetProps/ParkLamp/ParkLamp"                  );
-            props.Instantiate(PropType.Phone         , "LowpolyStreetPack/Prefabs/StreetProps/Phone/Phone"                        );
+            props.Instantiate(PropType.Bench_A, "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_A");
+            props.Instantiate(PropType.Bench_B, "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_B");
+            props.Instantiate(PropType.Bench_C, "LowpolyStreetPack/Prefabs/StreetProps/Bench/Bench_C");
+            props.Instantiate(PropType.FuseBox, "LowpolyStreetPack/Prefabs/StreetProps/FuseBox/FuseBox");
+            props.Instantiate(PropType.Hidrant, "LowpolyStreetPack/Prefabs/StreetProps/Hidrant/Hidrant");
+            props.Instantiate(PropType.MailBox, "LowpolyStreetPack/Prefabs/StreetProps/MailBox/MailBox");
+            props.Instantiate(PropType.NewsBoard, "LowpolyStreetPack/Prefabs/StreetProps/NewsBoard/NewsBoard");
+            props.Instantiate(PropType.ParkLamp, "LowpolyStreetPack/Prefabs/StreetProps/ParkLamp/ParkLamp");
+            props.Instantiate(PropType.Phone, "LowpolyStreetPack/Prefabs/StreetProps/Phone/Phone");
             props.Instantiate(PropType.PlantPot_A_V01, "LowpolyStreetPack/Prefabs/StreetProps/PlantPots/QuickBuild/PlantPot_A_V01");
             props.Instantiate(PropType.PlantPot_A_V02, "LowpolyStreetPack/Prefabs/StreetProps/PlantPots/QuickBuild/PlantPot_A_V02");
             props.Instantiate(PropType.PlantPot_A_V03, "LowpolyStreetPack/Prefabs/StreetProps/PlantPots/QuickBuild/PlantPot_A_V03");
@@ -160,5 +163,10 @@ public class PropManager : MonoBehaviour {
             blocks.Instantiate(BlockType.RoadBlock_C, "LowpolyStreetPack/Prefabs/StreetProps/RoadBlocks/RoadBlock_C");
             blocks.Instantiate(BlockType.RoadBlock_D, "LowpolyStreetPack/Prefabs/StreetProps/RoadBlocks/RoadBlock_D");
         }
+    }
+
+    private void Awake()
+    {
+        Init();
     }
 }

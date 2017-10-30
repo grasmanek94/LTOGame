@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 114461735911668032}
   - component: {fileID: 114669070819112098}
   - component: {fileID: 114868688590910416}
+  - component: {fileID: 114857396785226408}
   m_Layer: 0
   m_Name: Bridge_Damage_Corrected_L
   m_TagString: Untagged
@@ -288,6 +289,129 @@ MonoBehaviour:
   taken:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114857396785226408
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1829377246900098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points:
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: 6.5, y: 0, z: 9}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.5, y: 0, z: 19}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.5, y: 0, z: 9}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: 19}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.5, y: 0, z: 9}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.5, y: 0, z: 19}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: 9}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: 19}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: 6.5, y: 0, z: -28}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.5, y: 0, z: -18}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.5, y: 0, z: -28}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: -18}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.5, y: 0, z: -28}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.5, y: 0, z: -18}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: -28}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.5, y: 0, z: -18}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  block_points:
+  - probable_offsets:
+    - probability: 0.5
+      offsets:
+      - position: {x: -5.5, y: 0, z: 9}
+        rotation: {x: 0, y: -45, z: 0}
+        area: 1
+        max_position: {x: 5.5, y: 0, z: 23}
+        max_rotation: {x: 0, y: 45, z: 0}
+  - probable_offsets:
+    - probability: 0.5
+      offsets:
+      - position: {x: -5.5, y: 0, z: -30}
+        rotation: {x: 0, y: -45, z: 0}
+        area: 1
+        max_position: {x: 5.5, y: 0, z: -18}
+        max_rotation: {x: 0, y: 45, z: 0}
 --- !u!114 &114868688590910416
 MonoBehaviour:
   m_ObjectHideFlags: 1

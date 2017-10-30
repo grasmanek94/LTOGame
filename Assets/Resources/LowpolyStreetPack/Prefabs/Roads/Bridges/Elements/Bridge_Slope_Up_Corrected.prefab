@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114618863216968946}
   - component: {fileID: 114038335181122478}
   - component: {fileID: 114412971641492088}
+  - component: {fileID: 114014135684199584}
   m_Layer: 0
   m_Name: Bridge_Slope_Up_Corrected
   m_TagString: Untagged
@@ -127,6 +128,19 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 743b5a36add64654a83f60be2beee9f1, type: 3}
+--- !u!114 &114014135684199584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1847262508706066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points: []
+  block_points: []
 --- !u!114 &114038335181122478
 MonoBehaviour:
   m_ObjectHideFlags: 1

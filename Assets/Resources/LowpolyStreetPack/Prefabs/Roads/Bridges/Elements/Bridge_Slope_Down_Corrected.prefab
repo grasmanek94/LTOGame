@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114464681634990044}
   - component: {fileID: 114466506441344780}
   - component: {fileID: 114489358439455578}
+  - component: {fileID: 114884775605112486}
   m_Layer: 0
   m_Name: Bridge_Slope_Down_Corrected
   m_TagString: Untagged
@@ -236,3 +237,16 @@ MonoBehaviour:
       - {x: 0, y: -2.8, z: 0}
       - {x: -2, y: -5.2, z: 14}
       - {x: -4, y: -7.6, z: 28}
+--- !u!114 &114884775605112486
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1966843305088420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points: []
+  block_points: []

@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 114538201947086212}
   - component: {fileID: 114739206436897536}
   - component: {fileID: 114028537183560424}
+  - component: {fileID: 114456319695137074}
   m_Layer: 0
   m_Name: Bridge_Simple_Straight_Corrected
   m_TagString: Untagged
@@ -240,6 +241,19 @@ MonoBehaviour:
       - {x: 0, y: 2, z: 14}
       - {x: 2, y: 2, z: 21}
       - {x: 4, y: 2, z: 28}
+--- !u!114 &114456319695137074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1044819929185404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points: []
+  block_points: []
 --- !u!114 &114538201947086212
 MonoBehaviour:
   m_ObjectHideFlags: 1

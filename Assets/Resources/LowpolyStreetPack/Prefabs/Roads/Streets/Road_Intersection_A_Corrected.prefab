@@ -40,6 +40,7 @@ GameObject:
   - component: {fileID: 114504660422304082}
   - component: {fileID: 114559922241830768}
   - component: {fileID: 114761857317393460}
+  - component: {fileID: 114905844133233990}
   m_Layer: 0
   m_Name: Road_Intersection_A_Corrected
   m_TagString: Untagged
@@ -195,3 +196,16 @@ MonoBehaviour:
       - {x: 9, y: 2, z: 0}
       - {x: 11, y: 2, z: 0}
       - {x: 13, y: 2, z: 0}
+--- !u!114 &114905844133233990
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1489461027452070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points: []
+  block_points: []
