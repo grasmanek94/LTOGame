@@ -1,0 +1,4 @@
+A/D/Tilt phone - Strafe Left/Right
+Q/E/Swipe left/right - Turn Left/Right
+Space/Tap - Jump
+(debug mode) W/S - Forward / Backward
