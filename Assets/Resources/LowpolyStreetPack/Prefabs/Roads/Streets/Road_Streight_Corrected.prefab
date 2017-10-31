@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114710360334847206}
   - component: {fileID: 114071316633924678}
   - component: {fileID: 114104356282867148}
-  - component: {fileID: 114298291011158062}
+  - component: {fileID: 114974285675301424}
   m_Layer: 0
   m_Name: Road_Streight_Corrected
   m_TagString: Untagged
@@ -245,19 +245,6 @@ MonoBehaviour:
       - {x: -4, y: 2, z: 7.5}
       - {x: -4, y: 2, z: 10}
       - {x: -4, y: 2, z: 12.5}
---- !u!114 &114298291011158062
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1944983886034790}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prop_points: []
-  block_points: []
 --- !u!114 &114710360334847206
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -278,3 +265,76 @@ MonoBehaviour:
   taken:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114974285675301424
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1944983886034790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8caeb71c23623314a9e05c760e596f66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prop_points:
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.35, y: 0, z: 10}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.35, y: 0, z: -5}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: -6.35, y: 0, z: -10}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: -6.35, y: 0, z: 5}
+        rotation: {x: 0, y: 0, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: 6.35, y: 0, z: 10}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.35, y: 0, z: -5}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  - probable_offsets:
+    - probability: 0.2
+      offsets:
+      - position: {x: 6.35, y: 0, z: -10}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+      - position: {x: 6.35, y: 0, z: 5}
+        rotation: {x: 0, y: 180, z: 0}
+        area: 0
+        max_position: {x: 0, y: 0, z: 0}
+        max_rotation: {x: 0, y: 0, z: 0}
+  block_points:
+  - probable_offsets:
+    - probability: 0.25
+      offsets:
+      - position: {x: -3.5, y: 0, z: -10}
+        rotation: {x: 0, y: -60, z: 0}
+        area: 1
+        max_position: {x: 3.5, y: 0, z: 10}
+        max_rotation: {x: 0, y: 60, z: 0}

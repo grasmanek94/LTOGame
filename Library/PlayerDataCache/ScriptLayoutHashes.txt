@@ -16,6 +16,7 @@ c24a21b131bfa67be1162db2cba4b52b UnityEngine.Timeline.dll:UnityEngine.Timeline.T
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DebugScript
 f8b19b97900ca06b9c1ad0eec4014aa2 Assembly-CSharp.dll:Lean.Touch.LeanFingerDown
 f880a274cb7fb2a1cd75b0ff57aaa356 Assembly-CSharp.dll:.ScoreableProvider
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.PropManager
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Lean.Touch.LeanSelectableTranslateInertia3D
 685d4c83b4896c997314336557dd18df Assembly-CSharp.dll:Lean.Touch.LeanFingerLine
 a35dc9cca2faebc5f5f1aeb9e8e47bbe UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
@@ -117,6 +118,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 381ce6ca82673f74d791480ddfe87363 Assembly-CSharp.dll:Lean.Touch.LeanFingerSwipe
 3430152e67ba3ce097e5cc11ed066339 Assembly-CSharp.dll:Lean.Touch.LeanSwipeDirection4
+ca23ad3aafeac20daf3f5636ec09d2c4 Assembly-CSharp.dll:.TransformOffset
 783bf6d659235f53a950684dd61ab5b9 Assembly-CSharp.dll:.MouseLook
 bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -132,7 +134,7 @@ fe76270bd84ec3b6f2f6f92c69cf69da Assembly-CSharp.dll:UnityStandardAssets.CrossPl
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LoadSceneOnClick
 100c304f70c3aeefddebd85bf47ffd68 Assembly-CSharp.dll:.ProceduralWorldGenerator
 a7d3c6c6948d99dd4116e659ddcf5ac4 Assembly-CSharp.dll:UnityStandardAssets.CrossPlatformInput.ButtonHandler
-9a6462cf53b49bea473c964a1957fa1a Assembly-CSharp.dll:.PlayerController
+ba338a95dca8502a608529e4ce38ae36 Assembly-CSharp.dll:.PlayerController
 996b95b0c6188c912fe7c325e7f4bb6b Assembly-CSharp.dll:.Rotator
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:Lean.Touch.LeanSelectableTranslateInertia2D
 7ec810183283b62dc22c3816aac72ddc Assembly-CSharp.dll:Lean.Touch.LeanMultiTap
@@ -179,6 +181,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.RecordScreens
 2c1c9ca24124d1c2f2663139ec0115f8 Assembly-CSharp.dll:Lean.Touch.LeanCameraZoomSmooth
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.CheckpointAble
+bb823cf2b51462393ac5557150cb1bf0 Assembly-CSharp.dll:.PropPlacer
 38cd8bab352980a9895e8804a5c01c82 Assembly-CSharp.dll:Lean.Touch.LeanSwipeRigidbody3DNoRelease
 7f57011921aca6c66fc84ab5d0f10712 Assembly-CSharp.dll:.HoverEngine
 c23567de7068d554c905c20656a91b08 Assembly-CSharp.dll:Lean.Touch.LeanCameraMoveSmooth
