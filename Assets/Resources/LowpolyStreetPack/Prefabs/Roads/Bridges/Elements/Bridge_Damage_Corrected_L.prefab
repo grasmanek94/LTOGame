@@ -146,6 +146,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -161,6 +162,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -178,6 +180,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -193,6 +196,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -302,7 +306,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prop_points:
   - probable_offsets:
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: 6.5, y: 0, z: 9}
         rotation: {x: 0, y: 180, z: 0}
@@ -314,7 +318,7 @@ MonoBehaviour:
         area: 0
         max_position: {x: 0, y: 0, z: 0}
         max_rotation: {x: 0, y: 0, z: 0}
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: -6.5, y: 0, z: 9}
         rotation: {x: 0, y: 0, z: 0}
@@ -326,7 +330,7 @@ MonoBehaviour:
         area: 0
         max_position: {x: 0, y: 0, z: 0}
         max_rotation: {x: 0, y: 0, z: 0}
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: -6.5, y: 0, z: 9}
         rotation: {x: 0, y: 0, z: 0}
@@ -349,7 +353,7 @@ MonoBehaviour:
         max_position: {x: 0, y: 0, z: 0}
         max_rotation: {x: 0, y: 0, z: 0}
   - probable_offsets:
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: 6.5, y: 0, z: -28}
         rotation: {x: 0, y: 180, z: 0}
@@ -361,7 +365,7 @@ MonoBehaviour:
         area: 0
         max_position: {x: 0, y: 0, z: 0}
         max_rotation: {x: 0, y: 0, z: 0}
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: -6.5, y: 0, z: -28}
         rotation: {x: 0, y: 0, z: 0}
@@ -373,7 +377,7 @@ MonoBehaviour:
         area: 0
         max_position: {x: 0, y: 0, z: 0}
         max_rotation: {x: 0, y: 0, z: 0}
-    - probability: 0.2
+    - probability: 0.05
       offsets:
       - position: {x: -6.5, y: 0, z: -28}
         rotation: {x: 0, y: 0, z: 0}
@@ -397,7 +401,7 @@ MonoBehaviour:
         max_rotation: {x: 0, y: 0, z: 0}
   block_points:
   - probable_offsets:
-    - probability: 0.5
+    - probability: 0.1
       offsets:
       - position: {x: -5.5, y: 0, z: 9}
         rotation: {x: 0, y: -45, z: 0}
@@ -405,7 +409,7 @@ MonoBehaviour:
         max_position: {x: 5.5, y: 0, z: 23}
         max_rotation: {x: 0, y: 45, z: 0}
   - probable_offsets:
-    - probability: 0.5
+    - probability: 0.1
       offsets:
       - position: {x: -5.5, y: 0, z: -30}
         rotation: {x: 0, y: -45, z: 0}
