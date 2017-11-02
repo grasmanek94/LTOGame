@@ -1,0 +1,3 @@
+scoreboard is located at http://gz0.nl/gd/score.php
+
+Game can add score with http://gz0.nl/gd/score.php?addscore=1&name=Rafal&score=5000
