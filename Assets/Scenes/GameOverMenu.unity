@@ -408,6 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: {fileID: 119814506}
+  submit_button: {fileID: 207175467}
 --- !u!114 &207175467
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -956,6 +957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nickname: {fileID: 0}
+  submit_button: {fileID: 0}
 --- !u!1 &1185875770
 GameObject:
   m_ObjectHideFlags: 0
