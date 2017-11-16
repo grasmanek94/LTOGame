@@ -31,7 +31,11 @@ public class PlayerController : MonoBehaviour
 
     private float speed_multiplier_calculated;
     private float awoken_time;
-    private bool awoken_complete;
+    public bool awoken_complete
+    {
+        get;
+        private set;
+    }
 
     private bool is_touch_input;
     private float current_accelerometer_x;

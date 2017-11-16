@@ -310,7 +310,9 @@
     <Compile Include="Assets\Scripts\ScoreableProvider.cs" />
     <Compile Include="Assets\Scripts\Scorer.cs" />
     <Compile Include="Assets\Scripts\SpeedWarningIndicator.cs" />
+    <Compile Include="Assets\Scripts\TextFadeOut.cs" />
     <Compile Include="Assets\Scripts\TransformOffset.cs" />
+    <Compile Include="Assets\Scripts\Tutorial.cs" />
     <Compile Include="Assets\SkyBoxes\MouseLook.cs" />
     <Compile Include="Assets\SkyBoxes\RecordScreens.cs" />
     <Compile Include="Assets\SkyBoxes\SkyBoxPicker.cs" />

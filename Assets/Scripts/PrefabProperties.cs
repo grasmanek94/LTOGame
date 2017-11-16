@@ -21,7 +21,8 @@ public class PrefabProperties : MonoBehaviour {
         RoadCrossLeft,
         RoadEndC,
         RoadEndD,
-        RoadBusStopB
+        RoadBusStopB,
+        None
     }
 
     public Prefab prefab;
